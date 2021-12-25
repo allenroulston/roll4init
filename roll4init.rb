@@ -20,5 +20,9 @@ puts;
 
 initiativeBase = YAML.load(File.read("initiativeBase.yml"));
 
+bot.message(start_with: "hello") do |event|;
+   event.respond "I heard you";
+end;
+
 
 bot.run
