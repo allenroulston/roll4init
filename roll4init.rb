@@ -24,6 +24,7 @@ puts "--------- done ---------";
 bot = Discordrb::Bot.new token: token
 
 bot.message(start_with:"hello") do |event|;
+  puts "*** within the hello method ***";
   say = "I heard you";
    event.respond say;
 end;
