@@ -19,8 +19,10 @@ puts "          Roll 4 Init will be active soon"
 puts;
 
 initiativeBase = YAML.load(File.read("initiativeBase.yml"));
+puts initiativeBase.inspect;
+puts "--------- done ---------";
 
-bot.message(start_with: "hello") do |event|;
+bot.message(start_with:"hello") do |event|;
    event.respond "I heard you";
 end;
 
