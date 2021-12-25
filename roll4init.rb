@@ -21,6 +21,8 @@ initiativeBase = YAML.load(File.read("initiativeBase.yml"));
 puts initiativeBase.inspect;
 puts "--------- done ---------";
 
+bot = Discordrb::Bot.new token: token
+
 bot.message(start_with:"hello") do |event|;
   say = "I heard you";
    event.respond say;
