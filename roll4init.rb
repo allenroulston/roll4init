@@ -121,6 +121,30 @@ bot.message(start_with: "!r") do |event|;
      event.respond "Who are you?";
    end;
 end;          
-
+##################################################################################################################
+##################################################################################################################
+bot.message(start_with: "!n") do |event|;
+  event.message.delete; 
+  activeInitiative = YAML.load(File.read("activeInit.yml"));
+  howMany = activeInitiative.length;
+  if activeInitiative[0][2].to_s != "End of Round" then;
+        say = "**Entity " + activeInitiative[0][2].to_s + " [" + activeInitiative[0][4].to_s  + "] has initiative.**";
+  else;
+           say = "**END of ROUND**";
+  end;
+  data = "---" + "\n";
+      (1..(howMany-1)).each do |x|;
+          theZero = activeInitiative[x][0].to_s;
+          one = activeInitiative[x][1].to_s;
+          two = activeInitiative[x][2].to_s;
+          three = activeInitiative[x][3].to_s
+          four = activeInitiative[x][4].to_s;
+          five = activeInitiative[x][5].to_s;
+             data = data + '- [' + theZero + ',' + one + ',"' + two + '","' + three + '",' + four + ',"' + five + '"]' +  "\n";
+          #   format of:     - ["Y", 0, "Z", "alive", 0, "mt"]
+      end;
+  File.open("activeInit.yml", 'w+') {|f| f.write(data) }; 
+  event.respond say;
+end;
 
 bot.run
