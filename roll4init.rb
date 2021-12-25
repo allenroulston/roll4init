@@ -29,4 +29,17 @@ bot.message(start_with:"hello") do |event|;
    event.respond say;
 end;
 
+bot.message(start_with:"gmhelp") do |event|;
+  say = "Command List \n"
+  say = say + "!r : roll new initiatives \n";
+  say = say + "!n : show next initiative \n";
+  say = say + "!d@ : mark Entity Dead \m";
+  say = say + "   where @ = ABC... \n";
+  say = say + "!a@ : mark Entity Alive \n";
+  say = say + "   where @ = ABC... \n";
+  say = say + "!x@ : revise Dex Mod for @ \n";
+  say = say + "   where @ = ABC... \n";
+   event.respond say;
+end;
+
 bot.run
