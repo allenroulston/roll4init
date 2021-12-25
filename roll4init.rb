@@ -34,11 +34,11 @@ bot.message(start_with:"gmhelp") do |event|;
   say = say + "!r : roll new initiatives \n";
   say = say + "!n : show next initiative \n";
   say = say + "!d@ : mark Entity Dead \n";
-  say = say + "   where @ = ABC... \n";
+  say = say + "   where @ = A or B or C... \n";
   say = say + "!a@ : mark Entity Alive \n";
-  say = say + "   where @ = ABC... \n";
+  say = say + "   where @ = A or B or C... \n";
   say = say + "!x@ : revise Dex Mod for @ \n";
-  say = say + "   where @ = ABC... \n";
+  say = say + "   where @ = A or B or C... \n";
    event.respond say;
 end;
 
