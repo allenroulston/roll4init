@@ -43,7 +43,7 @@ bot.message(start_with:"gmhelp") do |event|;
 end;
 ##################################################################################################################
 ##################################################################################################################
-bot.message(start_with: "rollai") do |event|;
+bot.message(start_with: "!r") do |event|;
   event.message.delete; 
   if event.user.nick != nil;  theUser = event.user.nick;  else;  theUser = event.user.name;  end;
   if theUser == "Mr. DM" then;
