@@ -132,7 +132,7 @@ bot.message(start_with: "!n") do |event|;
   if activeInitiative[0][2].to_s != "End of Round" then;
      if activeInitiative[0][2].length == 1 then;
         position = nameList.index(activeInitiative[0][2]);
-        say = "**Entity " + names[position].to_s + " [" + activeInitiative[0][4].to_s  + "] has initiative.**";
+        say = "**Entity " + names[position][0].to_s + " [" + activeInitiative[0][4].to_s  + "] has initiative.**";
       else;
         say = "**Entity " + activeInitiative[0][2].to_s + " [" + activeInitiative[0][4].to_s  + "] has initiative.**";
       end;        
