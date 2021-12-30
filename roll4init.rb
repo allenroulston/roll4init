@@ -214,5 +214,31 @@ bot.message(start_with: "!s") do |event|;
    end;
    event.respond say;
 end;
+##################################################################################################################
+##################################################################################################################
+bot.message(start_with: "!x") do |event|;
+   activeInitiative = YAML.load(File.read("initiativeBase.yml"));
+   howMany = (activeInitiative.length)-1;
+   bundle = event.content.slice(2,99); lenB = bundle.length
+   dexMod = (bundle.slice(0,1));
+   entity = bundle.slice(1,lenB-1)
+   
+   data = "---" + "\n";
+   (0..howMany).each do |x|;
+       theZero = activeInitiative[x][0].to_s;
+       one = activeInitiative[x][1].to_s;
+       two = activeInitiative[x][2].to_s;
+       three = activeInitiative[x][3].to_s
+       four = activeInitiative[x][4].to_s;
+       five = activeInitiative[x][5].to_s;
+       if entity.index(two) != nil then;
+         one = dexMod;
+       end;
+       data = data + '- [' + theZero + ',' + one + ',"' + two + '","' + three + '",' + four + ',"' + five + '"]' +  "\n";
+    #   format of:     - ["Y", 0, "Z", "alive", 0, "mt"]
+   end;
+   File.open("initiativeBase.yml", 'w+') {|f| f.write(data) };
+   event.respond "Dex Mod complete for " + entity;
+end;
 #####################################################################
 bot.run
