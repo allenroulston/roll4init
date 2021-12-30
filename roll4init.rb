@@ -48,7 +48,7 @@ end;
 bot.message(start_with: "!r") do |event|;
   event.message.delete; 
   if event.user.nick != nil;  theUser = event.user.nick;  else;  theUser = event.user.name;  end;
-  if theUser == "Mr. DM" then;
+  if theUser != "SayWhat" then;
      initArray = YAML.load(File.read("initiativeBase.yml"));
      #mixtape used to ensure ties are handled
      mixTape = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","$","@","%","&","!","(",")"].shuffle;
