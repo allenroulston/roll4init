@@ -34,7 +34,7 @@ bot.message(start_with:"gmhelp") do |event|;
   say = "Command List \n"
   say = say + "!r : roll new initiatives \n";
   say = say + "!n : show next initiative \n";
-  say = say + "!d@ : mark Entity Dead \n";
+  say = say + "!d@ : mark Entity Dead \n\n";
   say = say + "   where @ = A or B or C... \n";
   say = say + "!a@ : mark Entity Alive \n";
   say = say + "   where @ = A or B or C... \n";
