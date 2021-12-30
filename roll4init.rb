@@ -28,7 +28,8 @@ bot.message(start_with:"hello") do |event|;
   say = "I heard you";
    event.respond say;
 end;
-
+##################################################################################################################
+##################################################################################################################
 bot.message(start_with:"gmhelp") do |event|;
   say = "Command List \n"
   say = say + "!r : roll new initiatives \n";
@@ -204,7 +205,7 @@ end;
 ##################################################################################################################
 bot.message(start_with: "!s") do |event|;
   event.message.delete; 
-   activeInitiative = YAML.load(File.read("activeInit.yml"));
+   activeInitiative = YAML.load(File.read("initiativeBase.yml"));
    howMany = (activeInitiative.length)-1;
    say = "";
    (0..howMany).each do |x|;
