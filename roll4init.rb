@@ -200,5 +200,17 @@ bot.message(start_with: "!a") do |event|;
    File.open("initiativeBase.yml", 'w+') {|f| f.write(data) };
    event.respond "Live complete for " + livers;
 end;
+##################################################################################################################
+##################################################################################################################
+bot.message(start_with: "!s") do |event|;
+  event.message.delete; 
+   activeInitiative = YAML.load(File.read("activeInit.yml"));
+   howMany = (activeInitiative.length)-1;
+   say = "";
+   (0..howMany).each do |x|;
+     say = say + activeInitiative[x].inspect + "\n";
+   end;
+   event.respond say;
+end;
 #####################################################################
 bot.run
