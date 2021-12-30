@@ -40,6 +40,7 @@ bot.message(start_with:"gmhelp") do |event|;
   say = say + "   where @ = A or B or C... \n";
   say = say + "!x@ : revise Dex Mod for @ \n";
   say = say + "   where @ = A or B or C... \n";
+  say = say + "!s  : show all Entities \n";
    event.respond say;
 end;
 ##################################################################################################################
