@@ -177,6 +177,26 @@ bot.message(start_with: "!d") do |event|;
     #   format of:     - ["Y", 0, "Z", "alive", 0, "mt"]
    end;
    File.open("initiativeBase.yml", 'w+') {|f| f.write(data) };
+
+   activeInitiative = YAML.load(File.read("activeInit.yml"));
+   howMany = (activeInitiative.length)-1;
+   deaders = event.content.slice(2,99);
+   data = "---" + "\n";
+   (0..howMany).each do |x|;
+       theZero = activeInitiative[x][0].to_s;
+       one = activeInitiative[x][1].to_s;
+       two = activeInitiative[x][2].to_s;
+       three = activeInitiative[x][3].to_s
+       four = activeInitiative[x][4].to_s;
+       five = activeInitiative[x][5].to_s;
+       if deaders.index(two) != nil then;
+         three = "Dead";
+       end;
+       data = data + '- [' + theZero + ',' + one + ',"' + two + '","' + three + '",' + four + ',"' + five + '"]' +  "\n";
+    #   format of:     - ["Y", 0, "Z", "alive", 0, "mt"]
+   end;
+   File.open("activeInit.yml", 'w+') {|f| f.write(data) };
+      
    event.respond "Dead complete for " + deaders;
 end;
 ##################################################################################################################
