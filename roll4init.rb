@@ -241,8 +241,14 @@ bot.message(start_with: "!x") do |event|;
    howMany = (activeInitiative.length)-1;
    bundle = event.content.slice(2,99); lenB = bundle.length
    dexMod = (bundle.slice(0,1));
-   entity = bundle.slice(1,lenB-1)
-   
+   # account for a negative value in the dexterity modifier
+   if dexMod == "-" then;
+      dexMod = (bundle.slice(0,2));
+      entity = bundle.slice(2,lenB-1)
+   else; 
+      entity = bundle.slice(1,lenB-1)
+   end;
+ 
    data = "---" + "\n";
    (0..howMany).each do |x|;
        theZero = activeInitiative[x][0].to_s;
