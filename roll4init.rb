@@ -179,6 +179,7 @@ bot.message(start_with: "!d") do |event|;
    File.open("initiativeBase.yml", 'w+') {|f| f.write(data) };
 
    activeInitiative = YAML.load(File.read("activeInit.yml"));
+   puts "*****" + activeInitiative.inspect;
    howMany = (activeInitiative.length)-1;
    deaders = event.content.slice(2,99);
    data = "---" + "\n";
