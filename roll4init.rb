@@ -245,9 +245,9 @@ bot.message(start_with: "!x") do |event|;
    # account for a negative value in the dexterity modifier
    if dexMod == "-" then;
       dexMod = (bundle.slice(0,2));
-      entity = bundle.slice(2,lenB-1)
+      entity = dexMod.to_s;
    else; 
-      entity = bundle.slice(1,lenB-1)
+      entity = dexMod.to_s;
    end;
  
    data = "---" + "\n";
