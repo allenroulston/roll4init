@@ -240,8 +240,14 @@ end;
 bot.message(start_with: "!x") do |event|;
    activeInitiative = YAML.load(File.read("initiativeBase.yml"));
    howMany = (activeInitiative.length)-1;
-   bundle = event.content.slice(2,99); lenB = bundle.length
-   dexMod = (bundle.slice(0,lenB));
+   bundle = event.content.slice(2,99); lenB = bundle.length;
+   negChk = bundle.slice(0,1);
+   if negChk == "-" then;     
+      dexMod = (bundle.slice(0,2));
+   else
+      dexMod = (bundle.slice(0,1));
+   end;
+    
    # turn the resulting integer into a string
     entity = dexMod.to_s;
  
