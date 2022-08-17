@@ -241,14 +241,9 @@ bot.message(start_with: "!x") do |event|;
    activeInitiative = YAML.load(File.read("initiativeBase.yml"));
    howMany = (activeInitiative.length)-1;
    bundle = event.content.slice(2,99); lenB = bundle.length
-   dexMod = (bundle.slice(0,1));
-   # account for a negative value in the dexterity modifier
-   if dexMod == "-" then;
-      dexMod = (bundle.slice(0,2));
-      entity = dexMod.to_s;
-   else; 
-      entity = dexMod.to_s;
-   end;
+   dexMod = (bundle.slice(0,lenB));
+   # turn the resulting integer into a string
+    entity = dexMod.to_s;
  
    data = "---" + "\n";
    (0..howMany).each do |x|;
