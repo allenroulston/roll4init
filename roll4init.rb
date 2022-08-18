@@ -238,18 +238,18 @@ end;
 ##################################################################################################################
 ##################################################################################################################
 bot.message(start_with: "!x") do |event|;
-   activeInitiative = YAML.load(File.read("initiativeBase.yml"));
-   howMany = (activeInitiative.length)-1;
-   bundle = event.content.slice(2,99); lenB = bundle.length;
-   negChk = bundle.slice(0,1);
-   if negChk == "-" then;     
-      dexMod = (bundle.slice(0,2));
-   else
-      dexMod = (bundle.slice(0,1));
-   end;
-    
-   # turn the resulting integer into a string
-    entity = dexMod.to_s;
+  activeInitiative = YAML.load(File.read("initiativeBase.yml"));
+  howMany = (activeInitiative.length)-1;
+  bundle = event.content.slice(2,99); lenB = bundle.length
+  dexMod = (bundle.slice(0,1));
+  # account for a negative value in the dexterity modifier
+  if dexMod == "-" then;
+     dexMod = (bundle.slice(0,2));
+     entity = bundle.slice(2,lenB-1)
+  else; 
+     entity = bundle.slice(1,lenB-1)
+  end;
+
  
    data = "---" + "\n";
    (0..howMany).each do |x|;
@@ -260,7 +260,7 @@ bot.message(start_with: "!x") do |event|;
        four = activeInitiative[x][4].to_s;
        five = activeInitiative[x][5].to_s;
        if entity.index(two) != nil then;
-         one = dexMod;
+         one = dexMod.to_s;   #make the value a string
        end;
        data = data + '- [' + theZero + ',' + one + ',"' + two + '","' + three + '",' + four + ',"' + five + '"]' +  "\n";
     #   format of:     - ["Y", 0, "Z", "alive", 0, "mt"]
