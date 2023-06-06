@@ -33,8 +33,9 @@ bot.message(start_with:"hello") do |event|;
 end;
 ##################################################################################################################
 ##################################################################################################################
-bot.message(start_with: "!R") do |event|;
+bot.message(start_with: "fuck") do |event|;
   say = "Here Come the read results \n";
+    event.respond say;
 =begin
   r.connect(:host => ENV['RETHINKDB_HOST'] || 'localhost',
             :port => ENV['RETHINKDB_PORT'] || 28015,
