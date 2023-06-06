@@ -8,6 +8,7 @@ require 'securerandom';
 include Math;
 include RethinkDB::Shortcuts
 
+puts "Cranking it up for another go!";
 
 ##########  Configuration  ########
 junk = YAML.load(File.read("roll4initData.yml"));
@@ -34,6 +35,12 @@ end;
 ##################################################################################################################
 ##################################################################################################################
 bot.message(start_with: "fuck") do |event|;
+  say = "Here Come the read results \n";
+  event.respond say;  
+end;
+##################################################################################################################
+##################################################################################################################
+bot.message(start_with: "piss") do |event|;
   say = "Here Come the read results \n";
     event.respond say;
 =begin
