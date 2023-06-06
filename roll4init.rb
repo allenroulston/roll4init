@@ -33,9 +33,9 @@ bot.message(start_with:"hello") do |event|;
 end;
 ##################################################################################################################
 ##################################################################################################################
-bot.message(start_with: "!READ") do |event|;
+bot.message(start_with: "!R") do |event|;
   say = "Here Come the read results \n";
-
+=begin
   r.connect(:host => ENV['RETHINKDB_HOST'] || 'localhost',
             :port => ENV['RETHINKDB_PORT'] || 28015,
             :user => ENV['RETHINKDB_USERNAME'] || 'admin',
@@ -43,6 +43,7 @@ bot.message(start_with: "!READ") do |event|;
             :db => ENV['RETHINKDB_NAME'] || 'test', ).repl
   bob = r.table('hitPoints').get_all('name').run(conn)
   say = say + bob;
+=end  
   event.respond say;  
 end;
 ##################################################################################################################
