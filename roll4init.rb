@@ -144,7 +144,7 @@ bot.message(start_with: "!r") do |event|;
     #   format of:     - ["Y", 0, "Z", "alive", 0, "mt"]
    end;
    File.open("activeInit.yml", 'w+') {|f| f.write(data) };
-   event.respond "**Ready to Rumble.**  Initiative rolling and sorting is complete. ";
+   event.respond "**Ready to Rumble.**  Initiative rolling and sorting is feckin complete. ";
    else; 
      event.respond "Who are you?";
    end;
