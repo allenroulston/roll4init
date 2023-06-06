@@ -1,9 +1,12 @@
+#bot.message(start_with:"cash") do |event|;
 #
 require 'discordrb';
+require 'rethinkdb';
 require 'yaml';
 require 'date';
 require 'securerandom';
 include Math;
+include RethinkDB::Shortcuts
 
 
 ##########  Configuration  ########
@@ -27,6 +30,20 @@ bot.message(start_with:"hello") do |event|;
   puts "*** within the hello method ***";
   say = "I heard you";
    event.respond say;
+end;
+##################################################################################################################
+##################################################################################################################
+bot.message(start_with:"readme") do |event|;
+  say = "Here Come the read results \n";
+
+  r.connect(:host => ENV['RETHINKDB_HOST'] || 'localhost',
+            :port => ENV['RETHINKDB_PORT'] || 28015,
+            :user => ENV['RETHINKDB_USERNAME'] || 'admin',
+            :password => ENV['RETHINKDB_PASSWORD'] || '',
+            :db => ENV['RETHINKDB_NAME'] || 'test', ).repl
+  bob = r.table('hitPoints').get_all('name').run(conn)
+  say = say + bob;
+  event.respond say;  
 end;
 ##################################################################################################################
 ##################################################################################################################
