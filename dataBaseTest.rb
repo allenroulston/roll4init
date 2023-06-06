@@ -1,5 +1,5 @@
 require 'rubygems'
-require 'rethinkdb-2.4.0.0'
+require 'rethinkdb'
 include RethinkDB::Shortcuts
 r.connect(:host => ENV['RETHINKDB_HOST'] || 'localhost',
           :port => ENV['RETHINKDB_PORT'] || 28015,
