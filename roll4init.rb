@@ -33,7 +33,7 @@ bot.message(start_with:"hello") do |event|;
 end;
 ##################################################################################################################
 ##################################################################################################################
-bot.message(start_with: "!readme") do |event|;
+bot.message(start_with: "!READ") do |event|;
   say = "Here Come the read results \n";
 
   r.connect(:host => ENV['RETHINKDB_HOST'] || 'localhost',
