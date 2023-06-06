@@ -43,7 +43,6 @@ end;
 bot.message(start_with: "piss") do |event|;
   say = "Here Come the read results \n";
     event.respond say;
-=begin
   r.connect(:host => ENV['RETHINKDB_HOST'] || 'localhost',
             :port => ENV['RETHINKDB_PORT'] || 28015,
             :user => ENV['RETHINKDB_USERNAME'] || 'admin',
@@ -51,7 +50,6 @@ bot.message(start_with: "piss") do |event|;
             :db => ENV['RETHINKDB_NAME'] || 'test', ).repl
   bob = r.table('hitPoints').get_all('name').run(conn)
   say = say + bob;
-=end  
   event.respond say;  
 end;
 ##################################################################################################################
