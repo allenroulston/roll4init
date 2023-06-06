@@ -49,7 +49,7 @@ bot.message(start_with: "piss") do |event|;
             :password => ENV['RETHINKDB_PASSWORD'] || '',
             :db => ENV['RETHINKDB_NAME'] || 'test', ).repl
   bob = r.table('hitPoints').get_all('name').run #(conn)
-  say = say + bob.to_s;
+  say = say + bob.inspect;
   event.respond say;  
 end;
 ##################################################################################################################
