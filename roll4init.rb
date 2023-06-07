@@ -84,7 +84,7 @@ end;
 ##################################################################################################################
 bot.message(start_with: "DMG") do |event|;
      say = "This is a DAMAGE result \n";
-  letter = event.content.slice(4,1);
+  letter = event.content.slice(3,1);
   hurt = event.content.slice(5,9).to_i;
   say = say + letter + "   " + hurt.to_s + "\n";
   r.connect(:host => ENV['RETHINKDB_HOST'] || 'localhost',
