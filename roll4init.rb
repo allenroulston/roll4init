@@ -41,6 +41,7 @@ end;
 ##################################################################################################################
 ##################################################################################################################
 bot.message(start_with: "piss") do |event|;
+  letter = event.content.slice(4,1);
   say = "Here Come the read results \n";
     event.respond say;
   r.connect(:host => ENV['RETHINKDB_HOST'] || 'localhost',
@@ -48,7 +49,7 @@ bot.message(start_with: "piss") do |event|;
             :user => ENV['RETHINKDB_USERNAME'] || 'admin',
             :password => ENV['RETHINKDB_PASSWORD'] || '',
             :db => ENV['RETHINKDB_NAME'] || 'test', ).repl
-  bob = r.table('hitPoints').filter({'name' => 'A'}).run #(conn)
+  bob = r.table('hitPoints').filter({'name' => letter }).run #(conn)
   say = say + bob.inspect;
   event.respond say;  
 end;
