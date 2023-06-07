@@ -92,7 +92,7 @@ bot.message(start_with: "DMG") do |event|;
             :user => ENV['RETHINKDB_USERNAME'] || 'admin',
             :password => ENV['RETHINKDB_PASSWORD'] || '',
             :db => ENV['RETHINKDB_NAME'] || 'test', ).repl
-  bob = r.table('hitPoints').filter({'name' => letter }).run #(conn)
+  bob = r.table('hitPoints').filter({'name' => letter }).run
   say = say + bob.inspect;
   event.respond say;  
 end;
@@ -107,8 +107,8 @@ bot.message(start_with: "piss") do |event|;
             :user => ENV['RETHINKDB_USERNAME'] || 'admin',
             :password => ENV['RETHINKDB_PASSWORD'] || '',
             :db => ENV['RETHINKDB_NAME'] || 'test', ).repl
-  bob = r.table('hitPoints').filter({'name' => letter }).run #(conn)
-  say = say + bob{:id}.to_s
+  bob = r.table('hitPoints').filter({'name' => letter }).run
+  say = say + bob[0].to_s
   event.respond say;  
 end;
 ##################################################################################################################
