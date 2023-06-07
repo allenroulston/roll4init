@@ -111,7 +111,9 @@ bot.message(start_with: "piss") do |event|;
   cursor.each do |doc|
     say = say + "id is " + doc["id"].to_s + "\n";
     say = say + "name is " + doc["name"].to_s + "\n";
-    say = say + "val is " + doc["val"].to_s + "\n";    
+    say = say + "val is " + doc["val"].to_s + "\n";
+    say = say + "val 0 is " + doc["val"][0].to_s + "\n";
+    say = say + "val 1 is " + doc["val"][1].to_s + "\n";           
   end;
   event.respond say;  
 end;
