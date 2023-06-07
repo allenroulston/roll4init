@@ -92,8 +92,22 @@ bot.message(start_with: "DMG") do |event|;
             :user => ENV['RETHINKDB_USERNAME'] || 'admin',
             :password => ENV['RETHINKDB_PASSWORD'] || '',
             :db => ENV['RETHINKDB_NAME'] || 'test', ).repl
-  bob = r.table('hitPoints').filter({'name' => letter }).run
-  say = say + bob.inspect;
+  cursor = r.table('hitPoints').filter({'name' => letter }).run
+  cursor.each do |doc|
+    say = say + "id is " + doc["id"].to_s + "\n";
+    theID = doc["id"];
+    say = say + "name is " + doc["name"].to_s + "\n";
+    theName = doc["name"];
+    say = say + "val is " + doc["val"].to_s + "\n";
+    say = say + "val 0 is " + doc["val"][0].to_s + "\n";
+    maxHP = doc["val"][0].to_i;
+    say = say + "val 1 is " + doc["val"][1].to_s + "\n";
+    currentHP = doc["val"][1].to_i;           
+  end;
+  # val 0 is maximum and val 1 is current hp
+  say = say + "DEDUCTING HP:" + hurt + "  from " +  current + " HP ";
+  r.table('hitPoints').update({ :id => theID, 'val'=>[maxHP,currentHP] }).run
+  
   event.respond say;  
 end;
 ##################################################################################################################
