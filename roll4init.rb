@@ -100,7 +100,7 @@ end;
 ##################################################################################################################
 bot.message(start_with: "piss") do |event|;
   letter = event.content.slice(4,1);
-  say = "Here Come the read results \n";
+  say = "Here Come The Data Read Results \n";
     event.respond say;
   r.connect(:host => ENV['RETHINKDB_HOST'] || 'localhost',
             :port => ENV['RETHINKDB_PORT'] || 28015,
@@ -109,7 +109,7 @@ bot.message(start_with: "piss") do |event|;
             :db => ENV['RETHINKDB_NAME'] || 'test', ).repl
   cursor = r.table('hitPoints').filter({'name' => letter }).run
   cursor.each do |doc|
-    say = say + doc[:id].to_s + "\n";
+    say = say + "inside" + doc[:id].to_s + "\n";
   end;
   event.respond say;  
 end;
