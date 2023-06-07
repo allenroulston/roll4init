@@ -47,12 +47,12 @@ bot.message(start_with: "SHIT") do |event|;
              :user => ENV['RETHINKDB_USERNAME'] || 'admin',
              :password => ENV['RETHINKDB_PASSWORD'] || '',
              :db => ENV['RETHINKDB_NAME'] || 'test', ).repl
-   #r.table_drop('hitPoints').run
+   r.table_drop('hitPoints').run
    r.table_create('hitPoints').run
    r.table('hitPoints').insert({ :name=>'A', 'val'=>[100,95] }).run
    r.table('hitPoints').insert({ :name=>'B', 'val'=>[90,85] }).run
    r.table('hitPoints').insert({ :name=>'C', 'val'=>[80,75] }).run
-   bob = r.table('hitPoints').getall(:name).run
+   bob = r.table('hitPoints').get_all(:name).run
    say = say + bob.inspect;
    event.respond say;      
 end;
