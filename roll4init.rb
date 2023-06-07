@@ -90,7 +90,6 @@ bot.message(start_with: "dork") do |event|;
      hurt = event.content.slice(5,9).to_i;
      say = say + " AFTER 2 slice event content:" + event.content + "\n";
      say = say + letter + "   " + hurt.to_s + "\n";
-     event.respond say;  
     
      r.connect(:host => ENV['RETHINKDB_HOST'] || 'localhost',
                :port => ENV['RETHINKDB_PORT'] || 28015,
@@ -108,11 +107,13 @@ bot.message(start_with: "dork") do |event|;
     say = say + "val 0 is " + doc["val"][0].to_s + "\n";
     maxHP = doc["val"][0].to_i;
     say = say + "val 1 is " + doc["val"][1].to_s + "\n";
-    currentHP = doc["val"][1].to_i;           
+    currentHP = doc["val"][1].to_i;
+    currentHP = currentHP - hurt;         
   end;
   # val 0 is maximum and val 1 is current hp
   say = say + "DEDUCTING HP:" + hurt.to_s + "  from " +  currentHP.to_s + " HP ";
   r.table('hitPoints').update({ :id => theID, 'val'=>[maxHP,currentHP] }).run
+  event.respond say;
 end;  
 ##################################################################################################################
 ##################################################################################################################
