@@ -109,8 +109,6 @@ bot.message(start_with: "piss") do |event|;
             :db => ENV['RETHINKDB_NAME'] || 'test', ).repl
   bob = r.table('hitPoints').filter({'name' => letter }).run #(conn)
   bob.each{|data| p document}
-     say = say + p.to_s + "\n";
-  end;
   event.respond say;  
 end;
 ##################################################################################################################
