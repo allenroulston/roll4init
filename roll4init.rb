@@ -83,16 +83,15 @@ end;
 ##################################################################################################################
 ##################################################################################################################
 bot.message(start_with: "dork") do |event|;
+     letter = event.content.slice(4,1);  
      say = "This is a DAMAGE result \n";
      say = say + " event content:" + event.content + "\n";
-     letter = event.content.slice(4,1);
      say = say + " AFTER slice event content:" + event.content + "\n";     
      hurt = event.content.slice(5,9).to_i;
      say = say + " AFTER 2 slice event content:" + event.content + "\n";
      say = say + letter + "   " + hurt.to_s + "\n";
      event.respond say;  
-end;     
-=begin
+    
      r.connect(:host => ENV['RETHINKDB_HOST'] || 'localhost',
                :port => ENV['RETHINKDB_PORT'] || 28015,
                :user => ENV['RETHINKDB_USERNAME'] || 'admin',
@@ -114,8 +113,7 @@ end;
   # val 0 is maximum and val 1 is current hp
   say = say + "DEDUCTING HP:" + hurt + "  from " +  current + " HP ";
   r.table('hitPoints').update({ :id => theID, 'val'=>[maxHP,currentHP] }).run
-=end  
-
+end;  
 ##################################################################################################################
 ##################################################################################################################
 bot.message(start_with: "piss") do |event|;
