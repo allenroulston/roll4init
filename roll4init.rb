@@ -40,6 +40,18 @@ bot.message(start_with: "fuck") do |event|;
 end;
 ##################################################################################################################
 ##################################################################################################################
+bot.message(start_with: "SHIT") do |event|;
+   say = "Here Come da Judge: \n";  
+   r.table_drop('hitPoints').run
+   r.table('hitPoints').insert({ 'name'=>'A', 'val'=>[100,95] }).run
+   r.table('hitPoints').insert({ 'name'=>'B', 'val'=>[90,85] }).run
+   r.table('hitPoints').insert({ 'name'=>'C', 'val'=>[80,75] }).run
+   bob = r.table('hitPoints').getall('name').run
+   say = say + bob.inspect;
+   event.respond say;      
+end;
+##################################################################################################################
+##################################################################################################################
 bot.message(start_with: "piss") do |event|;
   letter = event.content.slice(4,1);
   say = "Here Come the read results \n";
