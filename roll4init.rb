@@ -83,7 +83,8 @@ end;
 ##################################################################################################################
 ##################################################################################################################
 bot.message(start_with: "dork") do |event|;
-     letter = event.content.slice(4,1);  
+     letter = event.content.slice(4,1);
+     currentHP = 0;
      say = "This is a DAMAGE result \n";
      say = say + " event content:" + event.content + "\n";
      say = say + " AFTER slice event content:" + event.content + "\n";     
@@ -105,9 +106,9 @@ bot.message(start_with: "dork") do |event|;
     theName = doc["name"];
     say = say + "val is " + doc["val"].to_s + "\n";
     say = say + "val 0 is " + doc["val"][0].to_s + "\n";
-    maxHP = doc["val"][0].to_i;
+    maxHP = (doc["val"][0]).to_i;
     say = say + "val 1 is " + doc["val"][1].to_s + "\n";
-    currentHP = doc["val"][1].to_i;
+    currentHP = (doc["val"][1]).to_i;
     currentHP = currentHP - hurt;         
   end;
   # val 0 is maximum and val 1 is current hp
