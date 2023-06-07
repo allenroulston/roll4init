@@ -84,7 +84,7 @@ end;
 ##################################################################################################################
 bot.message(start_with: "dork") do |event|;
      letter = event.content.slice(4,1);
-     currentHP = 0;
+     currentHP = 0; theID = ""; theName = ""; maxHP = 0;
      say = "This is a DAMAGE result \n";
      say = say + " event content:" + event.content + "\n";
      say = say + " AFTER slice event content:" + event.content + "\n";     
