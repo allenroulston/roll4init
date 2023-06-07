@@ -82,6 +82,21 @@ bot.message(start_with: "SHIT") do |event|;
 end;
 ##################################################################################################################
 ##################################################################################################################
+bot.message(start_with: "DMG") do |event|;
+  letter = event.content.slice(4,1);
+  hurt = event.content.slice(5,9).to_i;
+  say = "This is a DAMAGE result \n";
+  r.connect(:host => ENV['RETHINKDB_HOST'] || 'localhost',
+            :port => ENV['RETHINKDB_PORT'] || 28015,
+            :user => ENV['RETHINKDB_USERNAME'] || 'admin',
+            :password => ENV['RETHINKDB_PASSWORD'] || '',
+            :db => ENV['RETHINKDB_NAME'] || 'test', ).repl
+  bob = r.table('hitPoints').filter({'name' => letter }).run #(conn)
+  say = say + bob.inspect;
+  event.respond say;  
+end;
+##################################################################################################################
+##################################################################################################################
 bot.message(start_with: "piss") do |event|;
   letter = event.content.slice(4,1);
   say = "Here Come the read results \n";
