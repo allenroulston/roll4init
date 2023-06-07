@@ -82,14 +82,14 @@ bot.message(start_with: "SHIT") do |event|;
 end;
 ##################################################################################################################
 ##################################################################################################################
-bot.message(start_with: "!DMG") do |event|;
+bot.message(start_with: ":DMG") do |event|;
      say = "This is a DAMAGE result \n";
      say = say + " event content:" + event.content + "\n";
      letter = event.content.slice(4,1);
      say = say + " AFTER slice event content:" + event.content + "\n";     
      hurt = event.content.slice(5,9).to_i;
      say = say + " AFTER 2 slice event content:" + event.content + "\n";
-  say = say + letter + "   " + hurt.to_s + "\n";
+     say = say + letter + "   " + hurt.to_s + "\n";
   r.connect(:host => ENV['RETHINKDB_HOST'] || 'localhost',
             :port => ENV['RETHINKDB_PORT'] || 28015,
             :user => ENV['RETHINKDB_USERNAME'] || 'admin',
