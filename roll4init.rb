@@ -82,7 +82,7 @@ bot.message(start_with: "SHIT") do |event|;
 end;
 ##################################################################################################################
 ##################################################################################################################
-bot.message(start_with: ":DMG") do |event|;
+bot.message(start_with: "dork") do |event|;
      say = "This is a DAMAGE result \n";
      say = say + " event content:" + event.content + "\n";
      letter = event.content.slice(4,1);
