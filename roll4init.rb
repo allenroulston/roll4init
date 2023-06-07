@@ -112,7 +112,7 @@ bot.message(start_with: "dork") do |event|;
     currentHP = currentHP - hurt;         
   end;
   # val 0 is maximum and val 1 is current hp
-  say = say + "DEDU-CTING HP:" + hurt.to_s + "  from " +  currentHP.to_s + " HP ";
+  say = say + "DEDUCTING HP:" + hurt.to_s + "  Resulting: " +  currentHP.to_s + " HP ";
   r.table('hitPoints').update({ :id => theID, 'val'=>[maxHP,currentHP] }).run
   event.respond say;
 end;  
