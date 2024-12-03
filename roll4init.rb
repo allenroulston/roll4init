@@ -1,12 +1,12 @@
 #bot.message(start_with:"cash") do |event|;
 #
 require 'discordrb';
-require 'rethinkdb';
+require 'pg';
 require 'yaml';
 require 'date';
 require 'securerandom';
 include Math;
-include RethinkDB::Shortcuts
+
 
 puts "Cranking it up for another go!";
 
