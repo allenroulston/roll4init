@@ -48,7 +48,7 @@ bot.message(start_with: "SHIT") do |event|;
 #             :user => ENV['RETHINKDB_USERNAME'] || 'admin',
 #             :password => ENV['RETHINKDB_PASSWORD'] || '',
 #             :db => ENV['RETHINKDB_NAME'] || 'test', ).repl
-conn = PG.connect(ENV['DATABASE_URL'])
+#conn = PG.connect(ENV['DATABASE_URL'])
 
 =begin
    r.table_drop('hitPoints').run
@@ -82,8 +82,8 @@ conn = PG.connect(ENV['DATABASE_URL'])
 =end
    #bob = r.table('hitPoints').get_all(:name).run
    #say = say + bob.inspect;
-    say = conn.inspect;
-   event.respond say;      
+   #say = conn.inspect;
+   event.respond "YO";      
 end;
 ##################################################################################################################
 ##################################################################################################################
