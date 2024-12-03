@@ -42,11 +42,15 @@ end;
 ##################################################################################################################
 bot.message(start_with: "SHIT") do |event|;
    say = "Here Come da Judge: \n";
-   r.connect(:host => ENV['RETHINKDB_HOST'] || 'localhost',
-             :port => ENV['RETHINKDB_PORT'] || 28015,
-             :user => ENV['RETHINKDB_USERNAME'] || 'admin',
-             :password => ENV['RETHINKDB_PASSWORD'] || '',
-             :db => ENV['RETHINKDB_NAME'] || 'test', ).repl
+
+#   r.connect(:host => ENV['RETHINKDB_HOST'] || 'localhost',
+#             :port => ENV['RETHINKDB_PORT'] || 28015,
+#             :user => ENV['RETHINKDB_USERNAME'] || 'admin',
+#             :password => ENV['RETHINKDB_PASSWORD'] || '',
+#             :db => ENV['RETHINKDB_NAME'] || 'test', ).repl
+conn = PG.connect(ENV['DATABASE_URL'])
+
+=begin
    r.table_drop('hitPoints').run
    r.table_create('hitPoints').run
    r.table('hitPoints').insert({ :name=>'A', 'val'=>[100,95] }).run
@@ -75,9 +79,10 @@ bot.message(start_with: "SHIT") do |event|;
    r.table('hitPoints').insert({ :name=>'X', 'val'=>[75,70] }).run
    r.table('hitPoints').insert({ :name=>'Y', 'val'=>[100,95] }).run
    r.table('hitPoints').insert({ :name=>'Z', 'val'=>[95,90] }).run
-     
-   bob = r.table('hitPoints').get_all(:name).run
-   say = say + bob.inspect;
+=end
+   #bob = r.table('hitPoints').get_all(:name).run
+   #say = say + bob.inspect;
+    say = conn.inspect;
    event.respond say;      
 end;
 ##################################################################################################################
