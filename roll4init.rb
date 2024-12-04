@@ -1,7 +1,7 @@
 #bot.message(start_with:"cash") do |event|;
 #
 require 'discordrb';
-require 'pg';
+#require 'pg';
 require 'yaml';
 require 'date';
 require 'securerandom';
