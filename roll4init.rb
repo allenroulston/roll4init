@@ -42,17 +42,20 @@ end;
 ##################################################################################################################
 bot.message(start_with: "SHIT") do |event|;
    say = "Here Come da Judge: \n";
-   wut = "";
 
-   wut = r.connect(:host => ENV['DATABASE_URL'])  # || 'localhost',
-#             :port => ENV['RETHINKDB_PORT'] || 28015,
-#             :user => ENV['RETHINKDB_USERNAME'] || 'admin',
-#             :password => ENV['RETHINKDB_PASSWORD'] || '',
-#             :db => ENV['RETHINKDB_NAME'] || 'test', ).repl
-#conn = PG.connect(ENV['DATABASE_URL'])
+   conn = PG.connect(
+     host: ENV['HEROKU_POSTGRESQL_HOST'],
+     database: ENV['HEROKU_POSTGRESQL_DATABASE'],
+     username: ENV['HEROKU_POSTGRESQL_USERNAME'],
+     password: ENV['HEROKU_POSTGRESQL_PASSWORD']
+   )
+
+   #result = conn.exec("SELECT * FROM my_table")
+   wut = conn.inspect;
+   conn.close
 
 
-   event.respond (wut.inspect);      
+   event.respond wut;      
 end;
 ##################################################################################################################
 ##################################################################################################################
