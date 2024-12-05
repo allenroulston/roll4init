@@ -42,6 +42,7 @@ end;
 ##################################################################################################################
 bot.message(start_with: "SHIT") do |event|;
    say = "Here Come da Judge: \n";
+   wut = "";
 
    wut = r.connect(:host => ENV['DATABASE_URL'])  # || 'localhost',
 #             :port => ENV['RETHINKDB_PORT'] || 28015,
