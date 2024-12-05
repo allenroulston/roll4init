@@ -47,8 +47,8 @@ bot.message(start_with: "SHIT") do |event|;
 #  PG.table_drop('hitPoints').run
    conn.exec("CREATE TABLE hitPoints (
         name varchar,
-        full, integer,
-        now, integer)")
+        full integer,
+        now integer)")
         
 =begin
    r.table('hitPoints').insert({ :name=>'A', 'val'=>[100,95] }).run
