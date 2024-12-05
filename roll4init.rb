@@ -44,18 +44,41 @@ bot.message(start_with: "SHIT") do |event|;
    say = "Here Come da Judge: \n";
 
    conn = PG.connect(ENV['DATABASE_URL'])
-   #conn = PG.connect(
-   # host: ENV['HEROKU_POSTGRESQL_HOST'],
-   # database: ENV['HEROKU_POSTGRESQL_DATABASE'],
-   # username: ENV['HEROKU_POSTGRESQL_USERNAME'],
-   # password: ENV['HEROKU_POSTGRESQL_PASSWORD']
-   # )
 
-   #result = conn.exec("SELECT * FROM my_table")
+#  PG.table_drop('hitPoints').run
+   result = PG.table_create('hitPoints').run
+=begin
+   r.table('hitPoints').insert({ :name=>'A', 'val'=>[100,95] }).run
+   r.table('hitPoints').insert({ :name=>'B', 'val'=>[95,90] }).run
+   r.table('hitPoints').insert({ :name=>'C', 'val'=>[90,85] }).run
+   r.table('hitPoints').insert({ :name=>'D', 'val'=>[85,80] }).run
+   r.table('hitPoints').insert({ :name=>'E', 'val'=>[80,75] }).run
+   r.table('hitPoints').insert({ :name=>'F', 'val'=>[75,70] }).run
+   r.table('hitPoints').insert({ :name=>'G', 'val'=>[100,95] }).run
+   r.table('hitPoints').insert({ :name=>'H', 'val'=>[95,90] }).run
+   r.table('hitPoints').insert({ :name=>'I', 'val'=>[90,85] }).run
+   r.table('hitPoints').insert({ :name=>'J', 'val'=>[85,80] }).run
+   r.table('hitPoints').insert({ :name=>'K', 'val'=>[80,75] }).run
+   r.table('hitPoints').insert({ :name=>'L', 'val'=>[75,70] }).run
+   r.table('hitPoints').insert({ :name=>'M', 'val'=>[100,95] }).run
+   r.table('hitPoints').insert({ :name=>'N', 'val'=>[95,90] }).run
+   r.table('hitPoints').insert({ :name=>'O', 'val'=>[90,85] }).run
+   r.table('hitPoints').insert({ :name=>'P', 'val'=>[85,80] }).run
+   r.table('hitPoints').insert({ :name=>'Q', 'val'=>[80,75] }).run
+   r.table('hitPoints').insert({ :name=>'R', 'val'=>[75,70] }).run
+   r.table('hitPoints').insert({ :name=>'S', 'val'=>[100,95] }).run
+   r.table('hitPoints').insert({ :name=>'T', 'val'=>[95,90] }).run
+   r.table('hitPoints').insert({ :name=>'U', 'val'=>[90,85] }).run
+   r.table('hitPoints').insert({ :name=>'V', 'val'=>[85,80] }).run
+   r.table('hitPoints').insert({ :name=>'W', 'val'=>[80,75] }).run
+   r.table('hitPoints').insert({ :name=>'X', 'val'=>[75,70] }).run
+   r.table('hitPoints').insert({ :name=>'Y', 'val'=>[100,95] }).run
+   r.table('hitPoints').insert({ :name=>'Z', 'val'=>[95,90] }).run
+=end
    wut = conn.inspect;
    conn.close
 
-   event.respond wut;      
+   event.respond result.inspect;      
 end;
 ##################################################################################################################
 ##################################################################################################################
