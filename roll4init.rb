@@ -73,7 +73,7 @@ bot.message(start_with: "readData") do |event|;
    result = conn.exec("SELECT * FROM hitPoints");
    conn.close;
    say = " data Result \n";
-   say = say + result[PG].inspect;   
+   say = say + result.type.inspect;   
    event.respond say;      
 end;
 #####################################################################
