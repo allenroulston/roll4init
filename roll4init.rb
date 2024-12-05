@@ -43,7 +43,7 @@ end;
 bot.message(start_with: "SHIT") do |event|;
    say = "Here Come da Judge: \n";
 
-   r = connect(:host => ENV['DATABASE_URL'])  # || 'localhost',
+   wut = r.connect(:host => ENV['DATABASE_URL'])  # || 'localhost',
 #             :port => ENV['RETHINKDB_PORT'] || 28015,
 #             :user => ENV['RETHINKDB_USERNAME'] || 'admin',
 #             :password => ENV['RETHINKDB_PASSWORD'] || '',
@@ -51,7 +51,7 @@ bot.message(start_with: "SHIT") do |event|;
 #conn = PG.connect(ENV['DATABASE_URL'])
 
 
-   event.respond (r.inspect);      
+   event.respond (wut.inspect);      
 end;
 ##################################################################################################################
 ##################################################################################################################
