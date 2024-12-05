@@ -40,10 +40,10 @@ bot.message(start_with: "fuck") do |event|;
 end;
 ##################################################################################################################
 ##################################################################################################################
-#bot.message(start_with: "SHIT") do |event|;
-#   say = "Here Come da Judge: \n";
+bot.message(start_with: "SHIT") do |event|;
+   say = "Here Come da Judge: \n";
 
-#   r.connect(:host => ENV['RETHINKDB_HOST'] || 'localhost',
+   r.connect(:host => ENV['DATABASE_URL'])  # || 'localhost',
 #             :port => ENV['RETHINKDB_PORT'] || 28015,
 #             :user => ENV['RETHINKDB_USERNAME'] || 'admin',
 #             :password => ENV['RETHINKDB_PASSWORD'] || '',
@@ -51,8 +51,8 @@ end;
 #conn = PG.connect(ENV['DATABASE_URL'])
 
 
-#   event.respond "YO";      
-#end;
+   event.respond (r.inspect);      
+end;
 ##################################################################################################################
 ##################################################################################################################
 
