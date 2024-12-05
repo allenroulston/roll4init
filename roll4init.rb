@@ -40,8 +40,7 @@ bot.message(start_with: "fuck") do |event|;
 end;
 ##################################################################################################################
 ##################################################################################################################
-bot.message(start_with: "SHIT") do |event|;
-   say = "Here Come da Judge: \n";
+bot.message(start_with: "create") do |event|;
 
    conn = PG.connect(ENV['DATABASE_URL'])
    conn.exec("DROP TABLE hitPoints");
@@ -55,6 +54,16 @@ bot.message(start_with: "SHIT") do |event|;
 end;
 ##################################################################################################################
 ##################################################################################################################
+bot.message(start_with: "addData") do |event|;
 
+   conn = PG.connect(ENV['DATABASE_URL'])
+   result = conn.exec("INSERT INTO hitPoints (name, fullHp, nowHp) VALUES
+                       ('Alpha', 10, 10),
+                       ('Bravo', 20, 20),
+                       ('Charlie', 30, 30)");
+
+   conn.close
+   event.respond result.inspect;      
+end;
 #####################################################################
 bot.run
