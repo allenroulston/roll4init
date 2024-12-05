@@ -71,10 +71,9 @@ bot.message(start_with: "readData") do |event|;
 
    conn = PG.connect(ENV['DATABASE_URL'])
    result = conn.exec("SELECT * FROM hitPoints");
-   dataReso = conn.inspect;
    conn.close;
-   say = " data Reso /n";
-   say = say + dataReso;   
+   say = " data Result \n";
+   say = say + result;   
    event.respond say;      
 end;
 #####################################################################
