@@ -44,9 +44,12 @@ bot.message(start_with: "SHIT") do |event|;
    say = "Here Come da Judge: \n";
 
    conn = PG.connect(ENV['DATABASE_URL'])
-
 #  PG.table_drop('hitPoints').run
-   result = PG.table_create('hitPoints').run
+   conn.exec("CREATE TABLE hitPoints (
+        name varchar,
+        full, integer,
+        now, integer)")
+        
 =begin
    r.table('hitPoints').insert({ :name=>'A', 'val'=>[100,95] }).run
    r.table('hitPoints').insert({ :name=>'B', 'val'=>[95,90] }).run
