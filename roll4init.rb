@@ -40,6 +40,17 @@ bot.message(start_with: "fuck") do |event|;
 end;
 ##################################################################################################################
 ##################################################################################################################
+bot.message(start_with: "readData") do |event|;
+
+   conn = PG.connect(ENV['DATABASE_URL'])
+   result = conn.exec("SELECT * FROM hitPoints");
+   conn.close;
+   say = " data Result \n";
+   say = say + result.PG.inspect;   
+   event.respond say;      
+end;
+##################################################################################################################
+##################################################################################################################
 bot.message(start_with: "create") do |event|;
 
    conn = PG.connect(ENV['DATABASE_URL'])
@@ -65,16 +76,6 @@ bot.message(start_with: "addData") do |event|;
    conn.close
    event.respond result.inspect;      
 end;
-##################################################################################################################
-##################################################################################################################
-bot.message(start_with: "readData") do |event|;
 
-   conn = PG.connect(ENV['DATABASE_URL'])
-   result = conn.exec("SELECT * FROM hitPoints");
-   conn.close;
-   say = " data Result \n";
-   say = say + result.type.inspect;   
-   event.respond say;      
-end;
 #####################################################################
 bot.run
