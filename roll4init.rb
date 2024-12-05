@@ -43,17 +43,17 @@ end;
 bot.message(start_with: "SHIT") do |event|;
    say = "Here Come da Judge: \n";
 
-   conn = PG.connect(
-     host: ENV['HEROKU_POSTGRESQL_HOST'],
-     database: ENV['HEROKU_POSTGRESQL_DATABASE'],
-     username: ENV['HEROKU_POSTGRESQL_USERNAME'],
-     password: ENV['HEROKU_POSTGRESQL_PASSWORD']
-   )
+   conn = PG.connect(ENV['DATABASE_URL'])
+   #conn = PG.connect(
+   # host: ENV['HEROKU_POSTGRESQL_HOST'],
+   # database: ENV['HEROKU_POSTGRESQL_DATABASE'],
+   # username: ENV['HEROKU_POSTGRESQL_USERNAME'],
+   # password: ENV['HEROKU_POSTGRESQL_PASSWORD']
+   # )
 
    #result = conn.exec("SELECT * FROM my_table")
    wut = conn.inspect;
    conn.close
-
 
    event.respond wut;      
 end;
