@@ -73,20 +73,19 @@ bot.message(start_with: "reVise") do |event|;
    stuff = {"name" => "Alpha", "revHp" => 15}, {"name" => "Bravo", "revHp" => 5}, {"name" => "Charlie", "revHp" => 35}; 
    say = say  + stuff.inspect +  "  \n";
 
-#   conn = PG.connect(ENV['DATABASE_URL'])
+   conn = PG.connect(ENV['DATABASE_URL'])
    # Process updates to database
    stuff.each do |guy|;
      say = say + "INSPECTED: " + guy.inspect + " \n";
-     say = say + "SHOW ME: " + guy.fetch("name").to_s + " \n";
      theName = guy.fetch("name");
      revisedHp = guy.fetch("revHp");
      say = say + "Data: " + theName.to_s + "   " + revisedHp.to_s + "  \n";
    end
    # Execute SQL update   
-#   result = conn.exec("UPDATE hitPoints SET nowHp = revisedHp WHERE name = theName");   
+   result = conn.exec("UPDATE hitPoints SET nowHp = revisedHp WHERE name = theName");   
 
 
-#  conn.close;
+   conn.close;
    event.respond say;  
 end;
 ##################################################################################################################
