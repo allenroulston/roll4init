@@ -22,8 +22,8 @@ puts "          Roll 4 Init will be active soon ";
 puts;
 
 initiativeBase = YAML.load(File.read("initiativeBase.yml"));
-puts initiativeBase.inspect;
-puts "--------- done ---------";
+#puts initiativeBase.inspect;
+puts "--------- loading is done ---------";
 
 bot = Discordrb::Bot.new token: token
 
@@ -48,6 +48,7 @@ bot.message(start_with: "readData") do |event|;
    # Process query results
    result.each do |row|
      say = say + row.to_s + "  " + " \n";
+     say = say + row.inspect + "   <inspected>\n";
 #    say = say + row["name"].to_s + "  " + row["fullHp"].to_s + "  " + row["nowHp"].to_s + " \n";
    end
 
