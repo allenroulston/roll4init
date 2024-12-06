@@ -50,15 +50,15 @@ bot.message(start_with: "readData") do |event|;
      say = say + row.to_s + "  " + " \n";
 #    say = say + row["name"].to_s + "  " + row["fullHp"].to_s + "  " + row["nowHp"].to_s + " \n";
    end
-=begin
+
    say = say + result.values.inspect + " \n";
    (0..2).each do |x|;
      theData = result[x].values;
      say = say + theData["name"].inspect + " \n";
-     say = say + theData["fullHp"].inspect  + " \n";
-     say = say + theData["nowHp"].inspect + " \n"; 
+     say = say + theData["fullhp"].inspect  + " \n";
+     say = say + theData["nowhp"].inspect + " \n"; 
    end;
-=end
+
    conn.close;   
    event.respond say;  
 end;
