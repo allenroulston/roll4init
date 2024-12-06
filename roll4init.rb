@@ -76,8 +76,8 @@ bot.message(start_with: "reVise") do |event|;
 #   conn = PG.connect(ENV['DATABASE_URL'])
    # Process updates to database
    stuff.each do |guy|;
-     theName = guy.name;
-     revisedHp = guy.revHp;
+     theName = guy[:name];
+     revisedHp = guy[:revHp];
      say = say + "Data: " + theName.to_s + "   " + revisedHp.to_s + "  \n";
    end
    # Execute SQL update   
