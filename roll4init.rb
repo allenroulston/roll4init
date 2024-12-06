@@ -51,7 +51,7 @@ bot.message(start_with: "readData") do |event|;
 #    say = say + row["name"].to_s + "  " + row["fullHp"].to_s + "  " + row["nowHp"].to_s + " \n";
    end
 
-   say = say + result.values.inspect + " \n";
+   say = say + "* " + result.values.inspect + " \n";
    (0..2).each do |x|;
      theData = result[x].values;
      say = say + theData.inspect;
