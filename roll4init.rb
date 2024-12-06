@@ -46,7 +46,7 @@ bot.message(start_with: "readData") do |event|;
    result = conn.exec("SELECT * FROM hitPoints");
    theData = result.values;
    theData.each do |x|;
-     say = say + theData[x].to_s + "\n"; 
+     say = say + theData[x].inspect + " \n"; 
    end;
    conn.close;   
    event.respond say;      
