@@ -80,7 +80,7 @@ bot.message(start_with: "reVise") do |event|;
      who = guy.fetch("name").to_s;
      rHp = guy.fetch("revHp").to_i;
      say = say + "Data: " + who.to_s + "   " + rHp.to_s + "  \n";
-     sqlCode = "UPDATE hitPoints SET nowHp = 'rHp' WHERE name = 'Alpha';"
+     sqlCode = "UPDATE hitPoints SET nowHp = '55' WHERE name = 'Alpha';"
   # Execute SQL update 
      conn.exec(sqlCode);
    end
