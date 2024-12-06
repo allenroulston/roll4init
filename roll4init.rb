@@ -81,9 +81,9 @@ bot.message(start_with: "reVise") do |event|;
      rHp = guy.fetch("revHp").to_i;
      say = say + "Data: " + who.to_s + "   " + rHp.to_s + "  \n";
   # Execute SQL update 
-     conn.exec("UPDATE hitPoints SET(nowHp = rHp) WHERE(name = who);");
+     conn.execute("UPDATE hitPoints SET nowHp = rHp WHERE name = who;");
    end
-  
+
    conn.close;
    event.respond say;  
 end;
