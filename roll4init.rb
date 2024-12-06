@@ -80,9 +80,9 @@ bot.message(start_with: "reVise") do |event|;
    result = conn.exec("UPDATE hitPoints SET nowHp = revisedHp WHERE name = theName");   
    
    # Process query results
-=end
 
-   conn.close;   
+   conn.close;
+=end
    event.respond say;  
 end;
 ##################################################################################################################
