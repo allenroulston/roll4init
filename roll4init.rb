@@ -70,7 +70,7 @@ end;
 bot.message(start_with: "reVise") do |event|;
    say = "ALTERATION OF DATA \n";
    
-   stuff = {"name" => "Alpha", "revHp" => 15}, {"name" => "Bravo", "revHp" => 5}, {"name" => "Charlie", "revHp" => 35}; 
+   stuff = {"name" => "Alpha", "revHp" => 75}, {"name" => "Bravo", "revHp" => 5}, {"name" => "Charlie", "revHp" => 35}; 
    say = say  + stuff.inspect +  "  \n";
 
    conn = PG.connect(ENV['DATABASE_URL'])
@@ -79,9 +79,10 @@ bot.message(start_with: "reVise") do |event|;
      say = say + "INSPECTED: " + guy.inspect + " \n";
      who = guy.fetch("name").to_s;
      rHp = guy.fetch("revHp").to_i;
-     say = say + "Data: " + who.to_s + "   " + rHp.to_s + "  \n";
-     sqlCode = "UPDATE hitPoints SET nowHp = '55' WHERE name = 'Alpha';"
-  # Execute SQL update 
+   # Build SQL statement (below)
+     sqlCode = "UPDATE hitPoints SET nowHp = '" + rHp.to_s + "' WHERE name = '" + who + "';";
+     say = say + sqlCode;
+   # Execute SQL update 
      conn.exec(sqlCode);
    end
 
