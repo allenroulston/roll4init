@@ -77,6 +77,7 @@ bot.message(start_with: "reVise") do |event|;
    # Process updates to database
    stuff.each do |guy|;
      say = say + "INSPECTED: " + guy.inspect + " \n";
+     say = say + "SHOW ME: " + guy[:name].inspect + " \n";
      theName = guy[:name];
      revisedHp = guy[:revHp];
      say = say + "Data: " + theName.to_s + "   " + revisedHp.to_s + "  \n";
