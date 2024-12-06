@@ -43,7 +43,13 @@ end;
 bot.message(start_with: "readData") do |event|;
    say = "The Data Result \n";
    conn = PG.connect(ENV['DATABASE_URL'])
+   # Execute SQL query   
    result = conn.exec("SELECT * FROM hitPoints");
+   # Process query results
+   result.each do |row|
+     say = say + row["name"].to_s + "  " + row["fullHp"].to_s + "  " + row["nowHp"].to_s;
+   end
+=begin
    say = say + result.values.inspect + " \n";
    (0..2).each do |x|;
      theData = result[x].values;
@@ -51,8 +57,9 @@ bot.message(start_with: "readData") do |event|;
      say = say + theData["fullHp"].inspect  + " \n";
      say = say + theData["nowHp"].inspect + " \n"; 
    end;
+=end
    conn.close;   
-   event.respond say;      
+   event.respond say;  
 end;
 ##################################################################################################################
 ##################################################################################################################
