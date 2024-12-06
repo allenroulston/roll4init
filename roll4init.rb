@@ -82,7 +82,7 @@ bot.message(start_with: "reVise") do |event|;
      say = say + "Data: " + who.to_s + "   " + rHp.to_s + "  \n";
    end
    # Execute SQL update   
-   result = conn.exec("UPDATE hitPoints SET nowHp = 'rHp' WHERE name = 'who';");
+   result = conn.exec("UPDATE hitPoints SET nowHp EQ rHp WHERE name EQ who;");
 
    conn.close;
    event.respond say;  
