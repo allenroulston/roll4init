@@ -54,9 +54,10 @@ bot.message(start_with: "readData") do |event|;
    say = say + result.values.inspect + " \n";
    (0..2).each do |x|;
      theData = result[x].values;
-     say = say + theData.name.inspect.to_s + " \n";
-     say = say + theData.fullhp.inspect.to_s  + " \n";
-     say = say + theData.nowhp.inspect.to_s + " \n"; 
+     say = say + theData.inspect;
+  #   say = say + theData.name.inspect.to_s + " \n";
+  #   say = say + theData.fullhp.inspect.to_s  + " \n";
+  #   say = say + theData.nowhp.inspect.to_s + " \n"; 
    end;
 
    conn.close;   
