@@ -77,12 +77,12 @@ bot.message(start_with: "reVise") do |event|;
    # Process updates to database
    stuff.each do |guy|;
      say = say + "INSPECTED: " + guy.inspect + " \n";
-     theName = guy.fetch("name");
-     revisedHp = guy.fetch("revHp");
+     theName = guy.fetch("name").to_s;
+     revisedHp = guy.fetch("revHp").to_i;
      say = say + "Data: " + theName.to_s + "   " + revisedHp.to_s + "  \n";
    end
    # Execute SQL update   
-   result = conn.exec("UPDATE hitPoints SET nowHp = revisedHp WHERE hitPoints.name = theName");   
+   result = conn.exec("UPDATE hitPoints SET nowHp = revisedHp WHERE name = theName");   
 
 
    conn.close;
