@@ -48,6 +48,7 @@ bot.message(start_with: "readData") do |event|;
    # Process query results
    result.each do |row|
      say = say + row.to_s + "  " + " \n";
+     say = say + "Fetch  " + row.fetch("name").to_s + "  " + row.fetch("fullhp").to_s + "  " + row.fetch("nowhp").to_s + "  \n";
      say = say + row.inspect + "   <inspected>\n";
 #    say = say + row["name"].to_s + "  " + row["fullHp"].to_s + "  " + row["nowHp"].to_s + " \n";
    end
