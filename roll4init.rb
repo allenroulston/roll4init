@@ -67,6 +67,26 @@ bot.message(start_with: "readData") do |event|;
 end;
 ##################################################################################################################
 ##################################################################################################################
+bot.message(start_with: "reVise") do |event|;
+   say = "ALTERATION OF DATA \n";
+   
+   stuff = {"name" => "Alpha", "revHp" => 15}, {"name" => "Bravo", "revHp" => 5}, {"name" => "Charlie", "revHp" => 35}; 
+   say = say  + stuff.inspect +  "  \n";
+
+=begin
+   conn = PG.connect(ENV['DATABASE_URL'])
+   
+   # Execute SQL update   
+   result = conn.exec("UPDATE hitPoints SET nowHp = revisedHp WHERE name = theName");   
+   
+   # Process query results
+=end
+
+   conn.close;   
+   event.respond say;  
+end;
+##################################################################################################################
+##################################################################################################################
 bot.message(start_with: "create") do |event|;
 
    conn = PG.connect(ENV['DATABASE_URL'])
