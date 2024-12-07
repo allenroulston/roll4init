@@ -96,10 +96,12 @@ bot.message(start_with: "create") do |event|;
    conn = PG.connect(ENV['DATABASE_URL'])
    conn.exec("DROP TABLE hitPoints");
    result = conn.exec("CREATE TABLE hitPoints (
-                       name varchar(20),
-                       fullHp integer,
-                       nowHp integer)");
-  
+                       ID integer NOT NULL,
+                       Name varchar(26),
+                       MaxHp integer,
+                       LowHp integer,
+                       PRIMARY KEY (ID)
+                       );");
    conn.close
    event.respond result.inspect;      
 end;
@@ -108,11 +110,12 @@ end;
 bot.message(start_with: "addData") do |event|;
 
    conn = PG.connect(ENV['DATABASE_URL'])
-   result = conn.exec("INSERT INTO hitPoints (name, fullHp, nowHp) VALUES
-                       ('Alpha', 10, 10),
-                       ('Bravo', 20, 20),
-                       ('Charlie', 30, 30)");
-
+   result = conn.exec("INSERT INTO hitPoints (ID, Name, MaxHp, LowHp) VALUES
+                       (0, 'Alpha', 10, 10),
+                       (1, 'Bravo', 20, 20),
+                       (2, 'Charlie', 30, 30),
+                       (3, 'Delta', 40, 40)
+                       ");
    conn.close
    event.respond result.inspect;      
 end;
