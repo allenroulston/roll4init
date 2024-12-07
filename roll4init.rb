@@ -40,28 +40,15 @@ bot.message(start_with: "fuck") do |event|;
 end;
 ##################################################################################################################
 ##################################################################################################################
-bot.message(start_with: "readData") do |event|;
-   say = "The Data Result \n";
+bot.message(start_with: "READ") do |event|;
+   say = "The Data Content: FETCHING: \n";
    conn = PG.connect(ENV['DATABASE_URL'])
    # Execute SQL query   
    result = conn.exec("SELECT * FROM hitPoints");
    # Process query results
    result.each do |row|
-     say = say + row.to_s + "  " + " \n";
-     say = say + "Fetch  " + row.fetch("name").to_s + "  " + row.fetch("fullhp").to_s + "  " + row.fetch("nowhp").to_s + "  \n";
-     say = say + row.inspect + "   <inspected>\n";
-#    say = say + row["name"].to_s + "  " + row["fullHp"].to_s + "  " + row["nowHp"].to_s + " \n";
+     say = say + row.fetch("ID").to_s + " " + row.fetch("Name").to_s + " " + row.fetch("MaxHp").to_s + " " + row.fetch("LowHp").to_s + "  \n";
    end
-
-   say = say + "* " + result.values.inspect + " \n";
-   (0..2).each do |x|;
-     theData = result[x].values;
-     say = say + " " + x.to_s + "> " + theData.inspect;
-  #   say = say + theData.name.inspect.to_s + " \n";
-  #   say = say + theData.fullhp.inspect.to_s  + " \n";
-  #   say = say + theData.nowhp.inspect.to_s + " \n"; 
-   end;
-
    conn.close;   
    event.respond say;  
 end;
@@ -91,7 +78,7 @@ bot.message(start_with: "reVise") do |event|;
 end;
 ##################################################################################################################
 ##################################################################################################################
-bot.message(start_with: "create") do |event|;
+bot.message(start_with: "CREATE") do |event|;
 
    conn = PG.connect(ENV['DATABASE_URL'])
    conn.exec("DROP TABLE hitPoints");
@@ -107,7 +94,7 @@ bot.message(start_with: "create") do |event|;
 end;
 ##################################################################################################################
 ##################################################################################################################
-bot.message(start_with: "addData") do |event|;
+bot.message(start_with: "LOAD") do |event|;
 
    conn = PG.connect(ENV['DATABASE_URL'])
    result = conn.exec("INSERT INTO hitPoints (ID, Name, MaxHp, LowHp) VALUES
