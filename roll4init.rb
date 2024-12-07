@@ -47,9 +47,10 @@ bot.message(start_with: "READ") do |event|;
    result = conn.exec("SELECT * FROM hitPoints");
    # Process query results
    say = say + result.inspect;
-#   result.each do |row|
+   result.each do |row|
+     say = say + row.inspect;
 #     say = say + row.fetch("ID").to_s + " " + row.fetch("Name").to_s + " " + row.fetch("MaxHp").to_s + " " + row.fetch("LowHp").to_s + "  \n";
-#   end
+   end
    conn.close;   
    event.respond say;  
 end;
