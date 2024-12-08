@@ -41,25 +41,26 @@ end;
 ##################################################################################################################
 ##################################################################################################################
 bot.message(start_with: "READ") do |event|;
-   say = "The Data Content: FETCHING: \n";
+   say = "Lump Read of the Database Content: \n";
    conn = PG.connect(ENV['DATABASE_URL'])
    # Execute SQL query   
    result = conn.exec("SELECT * FROM hitPoints");
    # Process query results
    say = say + result.inspect + "\n\n";
-   result.each do |row|
-     say = say + row.inspect + " \n";
-     say = say + row.fetch("id").to_s + " " + row.fetch("name").to_s + " " + row.fetch("maxhp").to_s + " " + row.fetch("lowhp").to_s + "  \n";
-   end
+#   result.each do |row|
+#     say = say + row.inspect + " \n";
+#     say = say + row.fetch("id").to_s + " " + row.fetch("name").to_s + " " + row.fetch("maxhp").to_s + " " + row.fetch("lowhp").to_s + "  \n";
+#   end
    conn.close;   
    event.respond say;  
 end;
 ##################################################################################################################
 ##################################################################################################################
-bot.message(start_with: "reVise") do |event|;
-   say = "ALTERATION OF DATA \n";
-   
-   stuff = {"name" => "Alpha", "revHp" => 75}, {"name" => "Bravo", "revHp" => 5}, {"name" => "Charlie", "revHp" => 35}; 
+bot.message(start_with: "dmg") do |event|;
+   say = "Someone was hurt: \n";
+   letter = event.content.slice(3,1);
+   #is the character found in letter valid?
+   validity = letter.index('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
    say = say  + stuff.inspect +  "  \n";
 
    conn = PG.connect(ENV['DATABASE_URL'])
@@ -85,10 +86,12 @@ bot.message(start_with: "CREATE") do |event|;
    conn = PG.connect(ENV['DATABASE_URL'])
    conn.exec("DROP TABLE hitPoints");
    result = conn.exec("CREATE TABLE hitPoints (
-                       ID integer NOT NULL,
-                       Name varchar(26),
-                       MaxHp integer,
-                       LowHp integer,
+                       id integer NOT NULL,
+                       dexmod integer,
+                       name varchar(31),
+                       maxhp integer,
+                       lowhp integer,
+                       status varchar(11)
                        PRIMARY KEY (ID)
                        );");
    conn.close
@@ -99,15 +102,38 @@ end;
 bot.message(start_with: "LOAD") do |event|;
 
    conn = PG.connect(ENV['DATABASE_URL'])
-   result = conn.exec("INSERT INTO hitPoints (ID, Name, MaxHp, LowHp) VALUES
-                       (0, 'Alpha', 10, 10),
-                       (1, 'Bravo', 20, 20),
-                       (2, 'Charlie', 30, 30),
-                       (3, 'Delta', 40, 40)
+   result = conn.exec("INSERT INTO hitPoints (id, name, dexmod, maxhp, lowhp, status) VALUES
+                       (0, 'Alpha', 3, 10, 10, 'Dead'),
+                       (1, 'Bravo', 2, 20, 20, 'Dead'),
+                       (2, 'Charlie', 1, 30, 30 , 'Alive'),
+                       (3, 'Delta', 0, 40, 40, 'Resting')
                        ");
    conn.close
    event.respond result.inspect;      
 end;
+##################################################################################################################
+##################################################################################################################
+bot.message(start_with: "reVise") do |event|;
+   say = "ALTERATION OF DATA \n";
+   
+   stuff = {"name" => "Alpha", "revHp" => 75}, {"name" => "Bravo", "revHp" => 5}, {"name" => "Charlie", "revHp" => 35}; 
+   say = say  + stuff.inspect +  "  \n";
 
+   conn = PG.connect(ENV['DATABASE_URL'])
+   # Process updates to database
+   stuff.each do |guy|;
+     say = say + "INSPECTED: " + guy.inspect + " \n";
+     who = guy.fetch("name").to_s;
+     rHp = guy.fetch("revHp").to_i;
+   # Build SQL statement (below)
+     sqlCode = "UPDATE hitPoints SET nowHp = '" + rHp.to_s + "' WHERE name = '" + who + "';";
+     say = say + sqlCode;
+   # Execute SQL update 
+     conn.exec(sqlCode);
+   end
+
+   conn.close;
+   event.respond say;  
+end;
 #####################################################################
 bot.run
