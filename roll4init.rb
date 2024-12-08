@@ -60,7 +60,7 @@ bot.message(start_with: "tdmg") do |event|;
    say = "Someone was hurt: \n";
    letter = event.content.slice(4,1);
    #is the character found in letter valid?
-   validity = letter.index('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+   validity = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.index(letter)
    say = say  + validity.inspect +  "  \n";
 =begin
    conn = PG.connect(ENV['DATABASE_URL'])
