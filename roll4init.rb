@@ -92,7 +92,7 @@ bot.message(start_with: "CREATE") do |event|;
                        maxhp integer,
                        lowhp integer,
                        status varchar(11)
-                       PRIMARY KEY (ID)
+                       PRIMARY KEY (id)
                        );");
    conn.close
    event.respond result.inspect;      
