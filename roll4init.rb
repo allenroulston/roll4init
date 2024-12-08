@@ -61,8 +61,8 @@ bot.message(start_with: "dmg") do |event|;
    letter = event.content.slice(3,1);
    #is the character found in letter valid?
    validity = letter.index('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
-   say = say  + stuff.inspect +  "  \n";
-
+   say = say  + validity.inspect +  "  \n";
+=begin
    conn = PG.connect(ENV['DATABASE_URL'])
    # Process updates to database
    stuff.each do |guy|;
@@ -75,7 +75,7 @@ bot.message(start_with: "dmg") do |event|;
    # Execute SQL update 
      conn.exec(sqlCode);
    end
-
+=end
    conn.close;
    event.respond say;  
 end;
