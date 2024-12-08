@@ -91,7 +91,7 @@ bot.message(start_with: "CREATE") do |event|;
                        name varchar(31),
                        maxhp integer,
                        lowhp integer,
-                       status varchar(11)
+                       status varchar(11),
                        PRIMARY KEY (id)
                        );");
    conn.close
