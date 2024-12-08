@@ -47,10 +47,10 @@ bot.message(start_with: "READ") do |event|;
    result = conn.exec("SELECT * FROM hitPoints");
    # Process query results
    say = say + result.inspect + "\n\n";
-#   result.each do |row|
-#     say = say + row.inspect + " \n";
-#     say = say + row.fetch("id").to_s + " " + row.fetch("name").to_s + " " + row.fetch("maxhp").to_s + " " + row.fetch("lowhp").to_s + "  \n";
-#   end
+   result.each do |row|
+     say = say + row.inspect + " \n";
+     say = say + row.fetch("id").to_s + " " + row.fetch("name").to_s + " " + row.fetch("maxhp").to_s + " " + row.fetch("lowhp").to_s + "  \n";
+   end
    conn.close;   
    event.respond say;  
 end;
@@ -84,7 +84,7 @@ end;
 bot.message(start_with: "CREATE") do |event|;
 
    conn = PG.connect(ENV['DATABASE_URL'])
-   #conn.exec("DROP TABLE hitPoints");
+   conn.exec("DROP TABLE hitPoints");
    result = conn.exec("CREATE TABLE hitPoints (
                        id integer NOT NULL,
                        dexmod integer,
