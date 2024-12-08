@@ -56,9 +56,9 @@ bot.message(start_with: "READ") do |event|;
 end;
 ##################################################################################################################
 ##################################################################################################################
-bot.message(start_with: "dmg") do |event|;
+bot.message(start_with: "tdmg") do |event|;
    say = "Someone was hurt: \n";
-   letter = event.content.slice(3,1);
+   letter = event.content.slice(4,1);
    #is the character found in letter valid?
    validity = letter.index('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
    say = say  + validity.inspect +  "  \n";
@@ -75,8 +75,9 @@ bot.message(start_with: "dmg") do |event|;
    # Execute SQL update 
      conn.exec(sqlCode);
    end
-=end
+
    conn.close;
+=end
    event.respond say;  
 end;
 ##################################################################################################################
