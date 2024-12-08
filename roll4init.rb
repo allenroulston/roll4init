@@ -60,7 +60,7 @@ bot.message(start_with: "tdmg") do |event|;
    letter = event.content.slice(4,1);
    #is the character found in letter valid?
    validity = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.index(letter);
-   if (validity > -1 && validity <26) then
+   if (validity != nil) then
       say = "Someone was hurt: \n";
     else;
       say = "SOMETHING IS NOT RIGHT \n";
