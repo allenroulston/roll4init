@@ -57,10 +57,14 @@ end;
 ##################################################################################################################
 ##################################################################################################################
 bot.message(start_with: "tdmg") do |event|;
-   say = "Someone was hurt: \n";
    letter = event.content.slice(4,1);
    #is the character found in letter valid?
-   validity = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.index(letter)
+   validity = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.index(letter);
+   if (validity > -1 && validity <26) then
+      say = "Someone was hurt: \n";
+    else;
+      say = "SOMETHING IS NOT RIGHT \n";
+    end;
    say = say  + validity.inspect +  "  \n";
 =begin
    conn = PG.connect(ENV['DATABASE_URL'])
