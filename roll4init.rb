@@ -59,13 +59,17 @@ end;
 bot.message(start_with: "tdmg") do |event|;
    letter = event.content.slice(4,1);
    #is the character found in letter valid?
-   validity = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.index(letter);
-   if (validity != nil) then
+   lValidity = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.index(letter);
+   remainder = event.content.slice(5,99);
+   rValidity = remainder.index(",");
+   if (lValidity != nil) && (rValidity != nil) then
       say = "Someone was hurt: \n";
+      say = say  + validity.inspect +  "  \n";
     else;
       say = "SOMETHING IS NOT RIGHT \n";
+      say = say + event.content;
     end;
-   say = say  + validity.inspect +  "  \n";
+   
 =begin
    conn = PG.connect(ENV['DATABASE_URL'])
    # Process updates to database
