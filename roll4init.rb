@@ -23,7 +23,7 @@ puts;
 
 initiativeBase = YAML.load(File.read("initiativeBase.yml"));
 #puts initiativeBase.inspect;
-puts "--------- loading is done ---------" + Time.now.inspect;
+puts "--------- loading is done ---------" + Time.now.in_time_zone('Eastern Time (US & Canada)').to_s;
 
 bot = Discordrb::Bot.new token: token
 
@@ -65,7 +65,7 @@ bot.message(start_with: "tdmg") do |event|;
       command = "SELECT * FROM hitPoints WHERE id = " + lValidity.to_s + ";" ;
       dataVals = conn.exec(command);
       say = say + "\n " + dataVals.inspect;
-      say = say + "\n " + dataVals.id.to_s; # + " " + dataVals.Result.fetch("name").to_s;     
+      say = say + "\n " + dataVals[0].id.to_s; # + " " + dataVals.Result.fetch("name").to_s;     
 #      stuff.each do |guy|;
 #        say = say + "INSPECTED: " + guy.inspect + " \n";
 #        who = guy.fetch("name").to_s;
