@@ -64,7 +64,8 @@ bot.message(start_with: "tdmg") do |event|;
       conn = PG.connect(ENV['DATABASE_URL'])
       command = "SELECT * FROM hitPoints WHERE id = " + lValidity.to_s + ";" ;
       dataVals = conn.exec(command);
-      say = say + "\n " + dataVals.inspect;      
+      say = say + "\n " + dataVals.inspect;
+      say = say + "\n " + dataVals.fetch("id").to_s + " " + dataVals.fetch("name").to_s;     
 #      stuff.each do |guy|;
 #        say = say + "INSPECTED: " + guy.inspect + " \n";
 #        who = guy.fetch("name").to_s;
