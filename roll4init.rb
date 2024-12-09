@@ -23,7 +23,7 @@ puts;
 
 initiativeBase = YAML.load(File.read("initiativeBase.yml"));
 #puts initiativeBase.inspect;
-puts "--------- loading is done ---------" + Time.now.in_time_zone('Eastern Time (US & Canada)').to_s;
+puts "--------- loading is done --------- " + Time.now(in: '+06:00').to_s;
 
 bot = Discordrb::Bot.new token: token
 
