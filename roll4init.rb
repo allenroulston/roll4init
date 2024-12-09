@@ -70,6 +70,7 @@ bot.message(start_with: "tdmg") do |event|;
         theStatus = row.fetch("status").to_s;
         theName = row.fetch("name").to_s;
       end;
+      newHpCnt = theLowHp - damage;
       say = say + "\n\n" + theName + " has " + theLowHp.to_s + " of " + theMaxHp.to_s + " and thus is " + theStatus;
       say = say + "\n" + "Health looks " + ((theLowHp/theMaxHp)*100).to_s;
       
