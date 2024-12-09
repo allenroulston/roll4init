@@ -63,7 +63,9 @@ bot.message(start_with: "tdmg") do |event|;
       say = say + "Damage :" + damage.to_s + " \n";
     else;
       say = "SOMETHING IS NOT RIGHT \n";
+      say = say + "rValidity:" + rValidity.inspect + " \n";
       say = say + event.content;
+      
     end;
    
 =begin
