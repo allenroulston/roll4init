@@ -51,7 +51,7 @@ end;
 ###############################################################################################
 ###############################################################################################
 bot.message(start_with: "tdmg") do |event|;
-   alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+   alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; theName = ""; theStatus = ""; theLowHp = -9; theMaxHp = -19;
    letter = event.content.slice(4,1);
    #is the character found in letter valid?
    lValidity = alphabet.index(letter);
