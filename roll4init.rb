@@ -59,7 +59,7 @@ bot.message(start_with: "tdmg") do |event|;
    rValidity = remainder.index(",");
    if (lValidity != nil) && (rValidity != nil) then
       damage = event.content.slice(5,(rValidity)).to_i;
-      say = "Entity " + alphabet[lValidity] + " sustained " +   + " hurts.";
+      say = "Entity " + alphabet[lValidity] + " sustained " + damage.to_s  + " hurts.";
     else;
       say = "SOMETHING IS NOT RIGHT \n";
       say = say + "rValidity:" + rValidity.inspect + " \n";
