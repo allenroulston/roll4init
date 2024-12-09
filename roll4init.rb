@@ -65,9 +65,13 @@ bot.message(start_with: "tdmg") do |event|;
       command = "SELECT * FROM hitPoints WHERE id = " + lValidity.to_s + ";" ;
       dataVals = conn.exec(command);
       dataVals.each do |row|
-        say = say + "\n -> ROW : " + row.inspect + "\n";
+        theMaxHp = row.fetch("maxhp").to_i;
+        theLowHp = row.fetch("lowhp").to_i;
+        theStatus = row.fetch("status").to_s;
+        theName = row.fetch("name").to_s;
       end;
-      say = say + "\n DATA VALS: " + dataVals.inspect;
+      say = say + "\n\n" + theName + " has " + theLowHp.to_s + " of " + theMaxHp.to_s + " and thus is " + theStatus;
+      say = say + "\n" + "Health looks " + ((theLowHp/theMaxHp)*100).to_s;
       
 #      say = say + "\n " + dataVals[0].id.to_s; # + " " + dataVals.Result.fetch("name").to_s;     
 #      stuff.each do |guy|;
