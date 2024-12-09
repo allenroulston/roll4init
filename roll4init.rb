@@ -60,29 +60,29 @@ bot.message(start_with: "tdmg") do |event|;
    if (lValidity != nil) && (rValidity != nil) then
       damage = event.content.slice(5,(rValidity)).to_i;
       say = "Entity " + alphabet[lValidity] + " sustained " + damage.to_s  + " hurts.";
+      # Access the database, pull date and push results      
+      conn = PG.connect(ENV['DATABASE_URL'])
+      command = "SELECT * FROM hitPoints WHERE id = " + lValidity.to_s + ";" ;
+      dataVals = conn.exec(command);
+      say = say + "\n " + dataVals.inspect;      
+#      stuff.each do |guy|;
+#        say = say + "INSPECTED: " + guy.inspect + " \n";
+#        who = guy.fetch("name").to_s;
+#        rHp = guy.fetch("revHp").to_i;
+#      # Build SQL statement (below)
+#        sqlCode = "UPDATE hitPoints SET nowHp = '" + rHp.to_s + "' WHERE name = '" + who + "';";
+#        say = say + sqlCode;
+#      # Execute SQL update 
+#        conn.exec(sqlCode);
+#      end
+      conn.close;
+      
     else;
       say = "SOMETHING IS NOT RIGHT \n";
       say = say + "rValidity:" + rValidity.inspect + " \n";
       say = say + event.content;
-      
     end;
-   
-=begin
-   conn = PG.connect(ENV['DATABASE_URL'])
-   # Process updates to database
-   stuff.each do |guy|;
-     say = say + "INSPECTED: " + guy.inspect + " \n";
-     who = guy.fetch("name").to_s;
-     rHp = guy.fetch("revHp").to_i;
-   # Build SQL statement (below)
-     sqlCode = "UPDATE hitPoints SET nowHp = '" + rHp.to_s + "' WHERE name = '" + who + "';";
-     say = say + sqlCode;
-   # Execute SQL update 
-     conn.exec(sqlCode);
-   end
 
-   conn.close;
-=end
    event.respond say;  
 end;
 ##################################################################################################################
