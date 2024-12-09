@@ -34,12 +34,6 @@ bot.message(start_with:"hello") do |event|;
 end;
 ##################################################################################################################
 ##################################################################################################################
-bot.message(start_with: "fuck") do |event|;
-  say = "Here Come the read results \n";
-  event.respond say;  
-end;
-##################################################################################################################
-##################################################################################################################
 bot.message(start_with: "READ") do |event|;
    say = "Lump Read of the Database Content: \n";
    conn = PG.connect(ENV['DATABASE_URL'])
@@ -49,7 +43,7 @@ bot.message(start_with: "READ") do |event|;
    say = say + result.inspect + "\n\n";
    result.each do |row|
      say = say + row.inspect + " \n";
-     say = say + row.fetch("id").to_s + " " + row.fetch("name").to_s + " " + row.fetch("maxhp").to_s + " " + row.fetch("lowhp").to_s + "  \n";
+     say = say + row.fetch("id").to_s + " " + row.fetch("name").to_s + " \n";
    end
    conn.close;   
    event.respond say;  
@@ -64,7 +58,9 @@ bot.message(start_with: "tdmg") do |event|;
    rValidity = remainder.index(",");
    if (lValidity != nil) && (rValidity != nil) then
       say = "Someone was hurt: \n";
-      say = say  + validity.inspect +  "  \n";
+      say = say  + lvalidity.inspect +  "  \n";
+      damage = event.content.slice(6,(rValidity-6)).to_i;
+      say = say + "Damage :" + damage.to_s + " \n";
     else;
       say = "SOMETHING IS NOT RIGHT \n";
       say = say + event.content;
