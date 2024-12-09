@@ -59,7 +59,7 @@ bot.message(start_with: "tdmg") do |event|;
    rValidity = remainder.index(",");
    if (lValidity != nil) && (rValidity != nil) then
       say = "Someone was hurt: \n";
-      say = say  + alphabet(lValidity) +  "  \n";
+      say = say  + alphabet[lValidity] +  "  \n";
       damage = event.content.slice(5,(rValidity)).to_i;
       say = say + "Damage :" + damage.to_s + " \n";
     else;
