@@ -58,10 +58,10 @@ bot.message(start_with: "tdmg") do |event|;
    remainder = event.content.slice(5,99);
    rValidity = remainder.index(",");
    if (lValidity != nil) && (rValidity != nil) then
-      say = "Someone was hurt: \n";
-      say = say  + alphabet[lValidity] +  "  \n";
+      say = "Entity " + alphabet[lValidity] + " was hurt: \n";
+      say = say  +  +  "  \n";
       damage = event.content.slice(5,(rValidity)).to_i;
-      say = say + "Damage :" + damage.to_s + " \n";
+      say = say + damage.to_s + " hurts sustained \n";
     else;
       say = "SOMETHING IS NOT RIGHT \n";
       say = say + "rValidity:" + rValidity.inspect + " \n";
