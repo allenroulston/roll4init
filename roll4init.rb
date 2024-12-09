@@ -65,9 +65,9 @@ bot.message(start_with: "tdmg") do |event|;
       command = "SELECT * FROM hitPoints WHERE id = " + lValidity.to_s + ";" ;
       dataVals = conn.exec(command);
       dataVals.each do |row|
-        say = say + "\n" + row.inspect;
+        say = say + "\n Row: " + row.inspect;
       end;
-      say = say + "\n " + dataVals.inspect;
+      say = say + "\n dataVals: " + dataVals.inspect;
 #      say = say + "\n " + dataVals[0].id.to_s; # + " " + dataVals.Result.fetch("name").to_s;     
 #      stuff.each do |guy|;
 #        say = say + "INSPECTED: " + guy.inspect + " \n";
