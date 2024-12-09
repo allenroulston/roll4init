@@ -23,7 +23,7 @@ puts;
 
 initiativeBase = YAML.load(File.read("initiativeBase.yml"));
 #puts initiativeBase.inspect;
-puts "--------- loading is done --------- " + Time.now(in: '-06:00').to_s;
+puts "--------- loading is done --------- " + Time.now(in: '-05:00').to_s;
 
 bot = Discordrb::Bot.new token: token
 
@@ -64,6 +64,9 @@ bot.message(start_with: "tdmg") do |event|;
       conn = PG.connect(ENV['DATABASE_URL'])
       command = "SELECT * FROM hitPoints WHERE id = " + lValidity.to_s + ";" ;
       dataVals = conn.exec(command);
+      dataVals.each do |row|
+        say = say + "\n" + row.inspect;
+      end;
       say = say + "\n " + dataVals.inspect;
 #      say = say + "\n " + dataVals[0].id.to_s; # + " " + dataVals.Result.fetch("name").to_s;     
 #      stuff.each do |guy|;
