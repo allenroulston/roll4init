@@ -51,14 +51,15 @@ end;
 ##################################################################################################################
 ##################################################################################################################
 bot.message(start_with: "tdmg") do |event|;
+   alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
    letter = event.content.slice(4,1);
    #is the character found in letter valid?
-   lValidity = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.index(letter);
+   lValidity = alphabet.index(letter);
    remainder = event.content.slice(5,99);
    rValidity = remainder.index(",");
    if (lValidity != nil) && (rValidity != nil) then
       say = "Someone was hurt: \n";
-      say = say  + lValidity.inspect +  "  \n";
+      say = say  + alphabet(lValidity) +  "  \n";
       damage = event.content.slice(5,(rValidity)).to_i;
       say = say + "Damage :" + damage.to_s + " \n";
     else;
