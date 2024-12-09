@@ -72,7 +72,7 @@ bot.message(start_with: "tdmg") do |event|;
       end;
       theLowHp = theLowHp - damage;
       say = say + "\n\n" + theName + " has " + theLowHp.to_s + " of " + theMaxHp.to_s + " and thus is " + theStatus;
-      say = say + "\n" + "Health looks " + (((theLowHp*1.00)/(theMaxHp*1.00)*100).to_s;
+      say = say + "\n" + "Health looks " + ( ( (theLowHp*1.00)/(theMaxHp*1.00) ) *100).to_s;
       
 #      say = say + "\n " + dataVals[0].id.to_s; # + " " + dataVals.Result.fetch("name").to_s;     
 #      stuff.each do |guy|;
