@@ -53,7 +53,7 @@ end;
 bot.message(start_with: "tdmg") do |event|;
    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; theID = 0; theName = ""; theStatus = ""; theLowHp = -9; theMaxHp = -19; health = "unknown";
    letter = event.content.slice(4,1); #4 > 3 for dmg   #NEXT LINE is the character found in letter valid?
-   lValidity = alphabet.index(letter);   rValidity = remainder.index(",");   remainder = event.content.slice(5,99);  # 5 > 4 for dmg
+   lValidity = alphabet.index(letter);   remainder = event.content.slice(5,99);   rValidity = remainder.index(","); # 5 > 4 for dmg
    if (lValidity != nil) && (rValidity != nil) then # valid letter and a comma is found
       damage = event.content.slice(5,(rValidity)).to_i;
       # Access the database, pull date and push results      
