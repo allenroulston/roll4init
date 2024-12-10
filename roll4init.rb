@@ -65,6 +65,7 @@ bot.message(start_with: "tdmg") do |event|;
       command = "SELECT * FROM hitPoints WHERE id = " + lValidity.to_s + ";" ;
       dataVals = conn.exec(command);
       dataVals.each do |row|
+        theID = row.fetch("id").to_i;
         theMaxHp = row.fetch("maxhp").to_i;
         theLowHp = row.fetch("lowhp").to_i;
         theStatus = row.fetch("status").to_s;
@@ -74,18 +75,13 @@ bot.message(start_with: "tdmg") do |event|;
       say = say + "\n\n" + theName + " has " + theLowHp.to_s + " of " + theMaxHp.to_s + " and thus is " + theStatus;
       say = say + "\n" + "Health looks " + ( ( (theLowHp*1.00)/(theMaxHp*1.00) ) *100).to_s;
       
-#      say = say + "\n " + dataVals[0].id.to_s; # + " " + dataVals.Result.fetch("name").to_s;     
-#      stuff.each do |guy|;
-#        say = say + "INSPECTED: " + guy.inspect + " \n";
-#        who = guy.fetch("name").to_s;
-#        rHp = guy.fetch("revHp").to_i;
-#      # Build SQL statement (below)
-#        sqlCode = "UPDATE hitPoints SET nowHp = '" + rHp.to_s + "' WHERE name = '" + who + "';";
-#        say = say + sqlCode;
-#      # Execute SQL update 
-#        conn.exec(sqlCode);
-#      end
-      conn.close;
+      # Build SQL statement (below)
+        sqlCode = "UPDATE hitPoints SET lowhp = '" + theLowHp.to_s + "' WHERE name = '" + theID + "';";
+        say = say + "\n" + sqlCode;
+      # Execute SQL update 
+        conn.exec(sqlCode);
+        
+    conn.close;
       
     else;
       say = "SOMETHING IS NOT RIGHT \n";
