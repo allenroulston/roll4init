@@ -76,7 +76,7 @@ bot.message(start_with: "tdmg") do |event|;
       say = say + "\n" + "Health looks " + ( ( (theLowHp*1.00)/(theMaxHp*1.00) ) *100).to_s;
       
       # Build SQL statement (below)
-        sqlCode = "UPDATE hitPoints SET lowhp = '" + theLowHp.to_s + "' WHERE name = '" + theID.to_s + "';";
+        sqlCode = "UPDATE hitPoints SET lowhp = " + theLowHp.to_s + " WHERE name = " + theID.to_s + ";";
         say = say + "\n" + sqlCode;
       # Execute SQL update 
         conn.exec(sqlCode);
