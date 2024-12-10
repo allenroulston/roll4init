@@ -68,7 +68,7 @@ bot.message(start_with: "tdmg") do |event|;
       say = theName + " sustained " + damage.to_s  + " hurts.";
       theLowHp = theLowHp - damage;   percent = ( ( (theLowHp*1.00)/(theMaxHp*1.00) ) *100);
       if percent < 0 then health = "Down"; else health = "Bloody"; end;
-      if percent > 50 then health = "Okay"; end;   if percent < 0 then status = "Down";
+      if percent > 50 then health = "Okay"; end;   if percent < 0 then status = "Down"; end;
       say = say + "\nand looks " + health + " and thus is " + theStatus;
       # Build SQL statement (below)
         sqlCode = "UPDATE hitPoints SET lowhp = " + theLowHp.to_s + " WHERE id = " + theID.to_s + ";";
