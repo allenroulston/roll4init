@@ -51,7 +51,7 @@ end;
 ###############################################################################################
 ###############################################################################################
 bot.message(start_with: "tdmg") do |event|;
-   alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; theName = ""; theStatus = ""; theLowHp = -9; theMaxHp = -19;
+   alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; theID = 0; theName = ""; theStatus = ""; theLowHp = -9; theMaxHp = -19;
    letter = event.content.slice(4,1);
    #is the character found in letter valid?
    lValidity = alphabet.index(letter);
@@ -76,7 +76,7 @@ bot.message(start_with: "tdmg") do |event|;
       say = say + "\n" + "Health looks " + ( ( (theLowHp*1.00)/(theMaxHp*1.00) ) *100).to_s;
       
       # Build SQL statement (below)
-        sqlCode = "UPDATE hitPoints SET lowhp = '" + theLowHp.to_s + "' WHERE name = '" + theID + "';";
+        sqlCode = "UPDATE hitPoints SET lowhp = '" + theLowHp.to_s + "' WHERE name = '" + theID.to_s + "';";
         say = say + "\n" + sqlCode;
       # Execute SQL update 
         conn.exec(sqlCode);
