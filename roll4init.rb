@@ -72,8 +72,8 @@ bot.message(start_with: "tdmg") do |event|;
         theName = row.fetch("name").to_s;
       end;
       theLowHp = theLowHp - damage;
-      say = say + "\n\n" + theName + " has " + theLowHp.to_s + " of " + theMaxHp.to_s + " and thus is " + theStatus;
-      say = say + "\n" + "Health looks " + ( ( (theLowHp*1.00)/(theMaxHp*1.00) ) *100).to_s;
+      health = ( ( (theLowHp*1.00)/(theMaxHp*1.00) ) *100);
+      say = say + "\n\n" + theName + " looks " + health.to_s + " and thus is " + theStatus;
       
       # Build SQL statement (below)
         sqlCode = "UPDATE hitPoints SET lowhp = " + theLowHp.to_s + " WHERE id = " + theID.to_s + ";";
