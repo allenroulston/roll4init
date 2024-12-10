@@ -51,7 +51,7 @@ end;
 ###############################################################################################
 ###############################################################################################
 bot.message(start_with: "tdmg") do |event|;
-   alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; theID = 0; theName = ""; theStatus = ""; theLowHp = -9; theMaxHp = -19;
+   alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; theID = 0; theName = ""; theStatus = ""; theLowHp = -9; theMaxHp = -19; health = "unknown";
    letter = event.content.slice(4,1);
    #is the character found in letter valid?
    lValidity = alphabet.index(letter);
@@ -59,7 +59,6 @@ bot.message(start_with: "tdmg") do |event|;
    rValidity = remainder.index(",");
    if (lValidity != nil) && (rValidity != nil) then
       damage = event.content.slice(5,(rValidity)).to_i;
-      say = "Entity " + alphabet[lValidity] + " sustained " + damage.to_s  + " hurts.";
       # Access the database, pull date and push results      
       conn = PG.connect(ENV['DATABASE_URL'])
       command = "SELECT * FROM hitPoints WHERE id = " + lValidity.to_s + ";" ;
@@ -71,9 +70,11 @@ bot.message(start_with: "tdmg") do |event|;
         theStatus = row.fetch("status").to_s;
         theName = row.fetch("name").to_s;
       end;
+      say = theName + " sustained " + damage.to_s  + " hurts.";
       theLowHp = theLowHp - damage;
-      health = ( ( (theLowHp*1.00)/(theMaxHp*1.00) ) *100);
-      say = say + "\n\n" + theName + " looks " + health.to_s + " and thus is " + theStatus;
+      percent = ( ( (theLowHp*1.00)/(theMaxHp*1.00) ) *100);
+      if percent > 50 then health = "Good"; else health = "Bloody"; end;
+      say = say + "\nand looks "  + health + " and thus is " + theStatus;
       
       # Build SQL statement (below)
         sqlCode = "UPDATE hitPoints SET lowhp = " + theLowHp.to_s + " WHERE id = " + theID.to_s + ";";
