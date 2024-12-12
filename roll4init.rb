@@ -108,13 +108,67 @@ bot.message(start_with: "LOAD") do |event|;
 
    conn = PG.connect(ENV['DATABASE_URL'])
    result = conn.exec("INSERT INTO hitPoints (id, name, dexmod, maxhp, lowhp, status) VALUES
-                       (4, 'Echo', 3, 50, 50, 'Dead'),
-                       (5, 'Foxtrot', 2, 25, 25, 'Dead'),
-                       (6, 'Golf', 1, 30, 30 , 'Alive'),
-                       (7, 'Hotel', 0, 40, 40, 'Resting')
+                       (8, 'India', 3, 50, 50, 'Dead'),
+                       (9, 'Juliette', 2, 35, 35, 'Dead'),
+                       (10, 'Kilo', 1, 30, 30 , 'Alive'),
+                       (11, 'Lima', 0, 40, 40, 'Resting')
                        ");
    conn.close
    event.respond result.inspect;      
+end;
+##################################################################################################################
+##################################################################################################################
+bot.message(start_with: "$HPsample") do |event|;
+  say = "Prepare HP command example: \n";
+  say = say + "Alive/Dead : A \n";
+  say = say + "Resilience : R \n"
+  say = say + "DEX : X \n";
+  say = say + "Dice Number : N \n";
+  say = say + "Dice Type : T \n";
+  say = say + "Add HP : HP \n";
+  say = say + "Letters : ABCDE  \n";
+  say = say + "$assignHP:A:R:X:N:T:HP:Letters:   \n";
+  say = say + "$assignHP:1:0:3:5:8:15:ABCDE:  \n";
+
+  one = "```"; two =  "```";
+  say = one + say + two;
+  event.respond say;
+end;
+###############################################################################################
+###############################################################################################
+bot.message(start_with: "$assignHP") do |event|;
+    data = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']; say = ""; totalHP = 0; theID = "";
+    theValues = [0,0,0,0];
+    inputStr = event.content;
+    testVal = inputStr.count(':'); 
+    if testVal == 8 then; #parse and gather the data between the colons
+       (0..7).each do |parts|;
+          colonHere = inputStr.index(':');
+          data[parts] = inputStr.slice(0,colonHere);
+          inputStr = inputStr.slice!(colonHere+1,99);
+       end;
+       conn = PG.connect(ENV['DATABASE_URL']) # build SQL command (below)
+              
+       cN = data[7].length; # cN is the Number of Creatures
+       (1..cN).each do |cnt|;
+         letter = (data[7])[cnt-1,1];
+           totalHP = data[6].to_i;
+                  (1..(data[4].to_i)).each do |dice|;
+                      totalHP = totalHP + rand(1..(data[5].to_i));
+                  end;
+# conn.exec("INSERT INTO hitPoints (id, name, dexmod, maxhp, lowhp, status) 
+                  sqlCode = "UPDATE hitPoints SET lowhp = " + totalHP.to_s + ", SET maxhp = " + totalHP.to_s + " WHERE id = " + theID.to_s + ";";
+                  say = say + "\n" + sqlCode;
+                # Execute SQL update 
+                  conn.exec(sqlCode);                 
+           say = say + letter + "   " + totalHP.to_s + "\n";
+       end;
+    else
+       say = "Input Error: " + event.content;
+    end; 
+    one = "```"; two =  "```";
+    say = one + say + two;
+    event.respond say ; 
 end;
 ###############################################################################################
 ###############################################################################################
