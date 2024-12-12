@@ -157,11 +157,11 @@ bot.message(start_with: "rolltheHP") do |event|;
                       totalHP = totalHP + rand(1..(data[5].to_i));
                   end;
 # conn.exec("INSERT INTO hitPoints (id, name, dexmod, maxhp, lowhp, status) 
-                  say = say + cnt.to_s;
-#                  sqlCode = "UPDATE hitPoints SET lowhp = " + totalHP.to_s + ", maxhp = " + totalHP.to_s + " WHERE id = " + theID.to_s + ";";
-#                  say = say + "\n" + sqlCode;
+                  theID = cnt - 1; say = say + cnt.to_s + "   ";
+                  sqlCode = "UPDATE hitPoints SET lowhp = " + totalHP.to_s + ", maxhp = " + totalHP.to_s + " WHERE id = " + theID.to_s + ";";
+                  say = say + "\n" + sqlCode;
                 # Execute SQL update 
-#                  conn.exec(sqlCode);                 
+                  conn.exec(sqlCode);                 
            say = say + letter + "   " + totalHP.to_s + "\n";
        end;
     else
