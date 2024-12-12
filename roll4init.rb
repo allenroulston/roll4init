@@ -161,7 +161,7 @@ bot.message(start_with: "rolltheHP") do |event|;
 #                  sqlCode = "UPDATE hitPoints SET lowhp = " + totalHP.to_s + ", maxhp = " + totalHP.to_s + " WHERE id = " + theID.to_s + ";";
 #                  say = say + "\n" + sqlCode;
                 # Execute SQL update 
-                  conn.exec(sqlCode);                 
+#                  conn.exec(sqlCode);                 
            say = say + letter + "   " + totalHP.to_s + "\n";
        end;
     else
