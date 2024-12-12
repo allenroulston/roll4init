@@ -118,7 +118,7 @@ bot.message(start_with: "LOAD") do |event|;
 end;
 ##################################################################################################################
 ##################################################################################################################
-bot.message(start_with: "$HPsample") do |event|;
+bot.message(start_with: "howtoHP") do |event|;
   say = "Prepare HP command example: \n";
   say = say + "Alive/Dead : A \n";
   say = say + "Resilience : R \n"
@@ -127,8 +127,8 @@ bot.message(start_with: "$HPsample") do |event|;
   say = say + "Dice Type : T \n";
   say = say + "Add HP : HP \n";
   say = say + "Letters : ABCDE  \n";
-  say = say + "$assignHP:A:R:X:N:T:HP:Letters:   \n";
-  say = say + "$assignHP:1:0:3:5:8:15:ABCDE:  \n";
+  say = say + "rolltheHP:A:R:X:N:T:HP:Letters:   \n";
+  say = say + "rolltheHP:1:0:3:5:8:15:ABCDE:  \n";
 
   one = "```"; two =  "```";
   say = one + say + two;
@@ -136,7 +136,7 @@ bot.message(start_with: "$HPsample") do |event|;
 end;
 ###############################################################################################
 ###############################################################################################
-bot.message(start_with: "$assignHP") do |event|;
+bot.message(start_with: "rolltheHP") do |event|;
     data = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']; say = ""; totalHP = 0; theID = "";
     theValues = [0,0,0,0];
     inputStr = event.content;
