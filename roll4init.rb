@@ -151,22 +151,21 @@ bot.message(start_with: "rolltheHP") do |event|;
        cN = data[7].length; # cN is the Number of Creatures
        (1..cN).each do |cnt|;
          letter = (data[7])[cnt-1,1];
-           say = say + "Letter " + letter.to_s;
            totalHP = data[6].to_i;
-=begin
                   (1..(data[4].to_i)).each do |dice|;
                       totalHP = totalHP + rand(1..(data[5].to_i));
 # conn.exec("INSERT INTO hitPoints (id, name, dexmod, maxhp, lowhp, status) 
-                      theID = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".index(data[7]); # points to the appropriate ID for the letter
+                      theID = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".index(letter); # points to the appropriate ID for the letter
                       theStatus = data[1].to_s; #acquire the status from position [1]
                       say = say +  "\n" + theID.to_s + " -- " + theStatus;
-                      sqlCode = "UPDATE hitPoints SET lowhp = " + totalHP.to_s + ", maxhp = " + totalHP.to_s + ", status = '" + theStatus + "' WHERE id = " + theID.to_s + ";";
-                      say = say + "\n" + sqlCode;
-                    # Execute SQL update 
-                      conn.exec(sqlCode);
-                  end;                 
-           say = say + letter + "   " + totalHP.to_s + "\n";
-=end           
+                  end;
+          say = say + "  -Letter- " + letter.to_s;                 
+          say = say + letter + "   " + totalHP.to_s + "\n";
+           sqlCode = "UPDATE hitPoints SET lowhp = " + totalHP.to_s + ", maxhp = " + totalHP.to_s + 
+                     ", status = '" + theStatus + "' WHERE id = " + theID.to_s + ";";
+           say = say + "\n" + sqlCode;
+         # Execute SQL update 
+           conn.exec(sqlCode);           
        end;
     else;
        say = "Input Error: " + event.content;
