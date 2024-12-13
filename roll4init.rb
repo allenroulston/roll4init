@@ -158,7 +158,7 @@ bot.message(start_with: "rolltheHP") do |event|;
                   end;
 # conn.exec("INSERT INTO hitPoints (id, name, dexmod, maxhp, lowhp, status) 
                   theID = cnt - 1; # points to the appropriate ID for the letter
-                  theStatus = data[0].to_s;
+                  theStatus = data[1].to_s;
                   sqlCode = "UPDATE hitPoints SET lowhp = " + totalHP.to_s + ", maxhp = " + totalHP.to_s + ", status = " + theStatus + " WHERE id = " + theID.to_s + ";";
                   say = say + "\n" + sqlCode;
                 # Execute SQL update 
