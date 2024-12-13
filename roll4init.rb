@@ -240,6 +240,33 @@ bot.message(start_with: "%a") do |event|;
   conn.close;
   event.respond say;
 end;
+##################################################################################################################
+##################################################################################################################
+bot.message(start_with: "!x") do |event|; #DEXTERITY ASSIGNMENT
+  say = "Assigning peeps DEX \n";
+  alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  inputStr = event.content.slice(2,50);
+  colonHere = inputStr.index(':');
+  if colonHere == nil then;
+     say = "Command Format: !d-2:ABC\nTake note of the colon.";
+  else;
+         conn = PG.connect(ENV['DATABASE_URL'])
+         goDex = inputStr.slice(0,colonHere).to_i;
+         goPeep = inputStr.slice(colonHere,49);
+         (0..25).each do |check|
+             if goPeep.index(alpha[check]) != nil then;
+               theID = check;
+               # Build SQL statement (below)
+                 sqlCode = "UPDATE hitPoints SET dexmod = " + goDex.to_s + " WHERE id = " + theID.to_s + ";\n";
+                 say = say + sqlCode;
+               # Execute SQL update 
+                 conn.exec(sqlCode); 
+             end;
+         end;
+     conn.close;
+  end;
+  event.respond say;
+end;
 ###############################################################################################
 ###############################################################################################
 bot.run
