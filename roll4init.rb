@@ -155,20 +155,21 @@ bot.message(start_with: "rolltheHP") do |event|;
            totalHP = data[6].to_i;
                   (1..(data[4].to_i)).each do |dice|;
                       totalHP = totalHP + rand(1..(data[5].to_i));
-                  end;
 # conn.exec("INSERT INTO hitPoints (id, name, dexmod, maxhp, lowhp, status) 
-                  theID = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".index(data[7]); # points to the appropriate ID for the letter
-                  theStatus = data[1].to_s; #acquire the status from position [1]
-                  say = say +  "\n" + theID.to_s + " -- " + theStatus;
-                  sqlCode = "UPDATE hitPoints SET lowhp = " + totalHP.to_s + ", maxhp = " + totalHP.to_s + ", status = '" + theStatus + "' WHERE id = " + theID.to_s + ";";
-                  say = say + "\n" + sqlCode;
-                # Execute SQL update 
-                  conn.exec(sqlCode);                 
+                      theID = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".index(data[7]); # points to the appropriate ID for the letter
+                      theStatus = data[1].to_s; #acquire the status from position [1]
+                      say = say +  "\n" + theID.to_s + " -- " + theStatus;
+                      sqlCode = "UPDATE hitPoints SET lowhp = " + totalHP.to_s + ", maxhp = " + totalHP.to_s + ", status = '" + theStatus + "' WHERE id = " + theID.to_s + ";";
+                      say = say + "\n" + sqlCode;
+                    # Execute SQL update 
+                      conn.exec(sqlCode);
+                  end;                 
            say = say + letter + "   " + totalHP.to_s + "\n";
        end;
     else
        say = "Input Error: " + event.content;
     end; 
+    conn.close;
     one = "```"; two =  "```";
     say = one + say + two;
     event.respond say ; 
