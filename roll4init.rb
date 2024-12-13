@@ -119,16 +119,16 @@ end;
 ##################################################################################################################
 ##################################################################################################################
 bot.message(start_with: "howtoHP") do |event|;
-  say = "Prepare HP command example: \n";
+  say = "Prepare HP command example:         \n";
   say = say + "Status : S  (Alive/Dead/Other)\n";
-  say = say + "Resilience : R (0/1) \n"
-  say = say + "DEX : X \n";
-  say = say + "HP Dice Number : N \n";
-  say = say + "HP Dice Type : T (d?)\n";
-  say = say + "Add Con HP : HP \n";
-  say = say + "Letters : ABCDE  \n";
-  say = say + "rolltheHP:S    :R:X:N:T:HP:Letters:   \n";
-  say = say + "rolltheHP:Alive:0:3:5:8:15:ABCDE:  \n";
+  say = say + "Resilience : R (0/1)          \n"
+  say = say + "DEX : X                       \n";
+  say = say + "HP Dice Number : N            \n";
+  say = say + "HP Dice Type : T (d?)         \n";
+  say = say + "Add Con HP : HP               \n";
+  say = say + "Letters : ABCDEFG             \n";
+  say = say + "rolltheHP:Status:R:X:N:T:HP:Letters:  \n";
+  say = say + "rolltheHP:Alive :0:3:5:8:15:ABCDEFG:  \n";
 
   one = "```"; two =  "```";
   say = one + say + two;
@@ -157,9 +157,10 @@ bot.message(start_with: "rolltheHP") do |event|;
 # conn.exec("INSERT INTO hitPoints (id, name, dexmod, maxhp, lowhp, status) 
                       theID = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".index(letter); # points to the appropriate ID for the letter
                       theStatus = data[1].to_s; #acquire the status from position [1]
+                      theDex = data[3].to_s; #acquire the Dexterity Modifier from position [3]
                   end;
-           sqlCode = "UPDATE hitPoints SET lowhp = " + totalHP.to_s + ", maxhp = " + totalHP.to_s + 
-                     ", status = '" + theStatus + "' WHERE id = " + theID.to_s + ";";
+           sqlCode = "UPDATE hitPoints SET lowhp = " + totalHP.to_s + ", maxhp = " + totalHP.to_s + ", status = '" + 
+                     theStatus + "' , dexmod = '" + theDex + "' + WHERE id = " + theID.to_s + ";";
            say = say + "\n" + sqlCode;
          # Execute SQL update 
            conn.exec(sqlCode);           
