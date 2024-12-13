@@ -148,10 +148,10 @@ bot.message(start_with: "rolltheHP") do |event|;
           inputStr = inputStr.slice!(colonHere+1,99);
        end;
        conn = PG.connect(ENV['DATABASE_URL']) # build SQL command (below)
-       say = say + data.inspect;
        cN = data[7].length; # cN is the Number of Creatures
        (1..cN).each do |cnt|;
          letter = (data[7])[cnt-1,1];
+           say = say + "Letter " + letter.to_s;
            totalHP = data[6].to_i;
 =begin
                   (1..(data[4].to_i)).each do |dice|;
