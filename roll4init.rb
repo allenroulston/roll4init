@@ -198,6 +198,27 @@ bot.message(start_with: "reVise") do |event|;
    conn.close;
    event.respond say;  
 end;
+##################################################################################################################
+##################################################################################################################
+bot.message(start_with: "%d") do |event|;
+  say = "Making peeps DEAD \n";
+  alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  # establish a connection with the database
+  conn = PG.connect(ENV['DATABASE_URL'])
+  goLive = event.content.slice(2,49);
+  (0..25).each do |check|
+      if goLive.index(alpha[check]) != nil then;
+        theID = check;
+        # Build SQL statement (below)
+          sqlCode = "UPDATE hitPoints SET status = '" + "Dead" + "' WHERE id = " + theID.to_s + ";";
+          say = say + sqlCode;
+        # Execute SQL update 
+          conn.exec(sqlCode); 
+      end;
+  end;
+  conn.close;
+  event.respond say;
+end;
 ###############################################################################################
 ###############################################################################################
 bot.run
