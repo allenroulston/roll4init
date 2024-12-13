@@ -166,9 +166,9 @@ bot.message(start_with: "rolltheHP") do |event|;
                       conn.exec(sqlCode);
                   end;                 
            say = say + letter + "   " + totalHP.to_s + "\n";
+=end           
        end;
-=end
-    else
+    else;
        say = "Input Error: " + event.content;
     end; 
     conn.close;
