@@ -137,7 +137,7 @@ end;
 ###############################################################################################
 ###############################################################################################
 bot.message(start_with: "rolltheHP") do |event|;
-    data = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']; say = ""; totalHP = 0; theID = ""; status = "";
+    data = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']; say = ""; totalHP = 0; theID = ""; theStatus = "";
     theValues = [0,0,0,0];
     inputStr = event.content;
     testVal = inputStr.count(':'); 
