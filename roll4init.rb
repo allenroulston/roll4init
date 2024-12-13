@@ -242,7 +242,7 @@ bot.message(start_with: "%a") do |event|;
 end;
 ##################################################################################################################
 ##################################################################################################################
-bot.message(start_with: "!x") do |event|; #DEXTERITY ASSIGNMENT
+bot.message(start_with: "%x") do |event|; #DEXTERITY ASSIGNMENT
   say = "Assigning peeps DEX \n";
   alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   inputStr = event.content.slice(2,50);
