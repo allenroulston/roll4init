@@ -120,15 +120,15 @@ end;
 ##################################################################################################################
 bot.message(start_with: "howtoHP") do |event|;
   say = "Prepare HP command example: \n";
-  say = say + "Alive/Dead : A \n";
-  say = say + "Resilience : R \n"
+  say = say + "Status : S  (Alive/Dead/Other)\n";
+  say = say + "Resilience : R (0/1) \n"
   say = say + "DEX : X \n";
-  say = say + "Dice Number : N \n";
-  say = say + "Dice Type : T \n";
-  say = say + "Add HP : HP \n";
+  say = say + "HP Dice Number : N \n";
+  say = say + "HP Dice Type : T (d?)\n";
+  say = say + "Add Con HP : HP \n";
   say = say + "Letters : ABCDE  \n";
-  say = say + "rolltheHP:A:R:X:N:T:HP:Letters:   \n";
-  say = say + "rolltheHP:1:0:3:5:8:15:ABCDE:  \n";
+  say = say + "rolltheHP:S    :R:X:N:T:HP:Letters:   \n";
+  say = say + "rolltheHP:Alive:0:3:5:8:15:ABCDE:  \n";
 
   one = "```"; two =  "```";
   say = one + say + two;
@@ -137,7 +137,7 @@ end;
 ###############################################################################################
 ###############################################################################################
 bot.message(start_with: "rolltheHP") do |event|;
-    data = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']; say = ""; totalHP = 0; theID = "";
+    data = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']; say = ""; totalHP = 0; theID = ""; status = "";
     theValues = [0,0,0,0];
     inputStr = event.content;
     testVal = inputStr.count(':'); 
@@ -157,8 +157,9 @@ bot.message(start_with: "rolltheHP") do |event|;
                       totalHP = totalHP + rand(1..(data[5].to_i));
                   end;
 # conn.exec("INSERT INTO hitPoints (id, name, dexmod, maxhp, lowhp, status) 
-                  theID = cnt - 1; say = say + cnt.to_s + "   ";
-                  sqlCode = "UPDATE hitPoints SET lowhp = " + totalHP.to_s + ", maxhp = " + totalHP.to_s + " WHERE id = " + theID.to_s + ";";
+                  theID = cnt - 1; # points to the appropriate ID for the letter
+                  theStatus = data[0].to_s;
+                  sqlCode = "UPDATE hitPoints SET lowhp = " + totalHP.to_s + ", maxhp = " + totalHP.to_s + ", status = " + theStatus + " WHERE id = " + theID.to_s + ";";
                   say = say + "\n" + sqlCode;
                 # Execute SQL update 
                   conn.exec(sqlCode);                 
