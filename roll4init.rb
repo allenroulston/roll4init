@@ -323,9 +323,9 @@ bot.message(start_with: "%r") do |event|;
       howMany = (data.length)-1;
       (0..howMany).each do |x|;
           if data[x][3] == 0 then;
-             data[x][6] = rand(1..20) + data[x][2];
+             data[x][6] = rand(1..20) + (data[x][2].to_i);
           else;
-             data[x][6] = [rand(1..20),rand(1..20)].max + data[x][2];
+             data[x][6] = [rand(1..20),rand(1..20)].max + (data[x][2].to_i);
           end;       
       end;
 
