@@ -406,7 +406,7 @@ bot.message(start_with: "%r") do |event|;
            idVal = idVal + 1;
         end;
     end;
-    say = "**Ready to Rumble.**  Initiative rolling and sorting is complete. ";
+    say = say + "\n" "**Ready to Rumble.**  Initiative rolling and sorting is complete. ";
  
           event.respond say; 
           else; 
