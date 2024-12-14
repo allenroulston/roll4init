@@ -104,6 +104,24 @@ bot.message(start_with: "CREATE") do |event|;
 end;
 ###############################################################################################
 ###############################################################################################
+bot.message(start_with: "CREATE-AI") do |event|;
+   conn = PG.connect(ENV['DATABASE_URL'])
+   conn.exec("DROP TABLE hitPoints");
+   result = conn.exec("CREATE TABLE activeInit (
+                       id integer NOT NULL,
+                       name varchar(31),
+                       dex integer,
+                       adv integer,
+                       status varchar(11),
+                       mixtape varchar(11),
+                       final integer,
+                       PRIMARY KEY (id)
+                       );");
+   conn.close
+   event.respond result.inspect;      
+end;
+###############################################################################################
+###############################################################################################
 bot.message(start_with: "LOAD") do |event|;
 
    conn = PG.connect(ENV['DATABASE_URL'])
@@ -267,6 +285,125 @@ bot.message(start_with: "%x") do |event|; #DEXTERITY ASSIGNMENT
   end;
   event.respond say;
 end;
+##################################################################################################################
+##################################################################################################################
+bot.message(start_with: "%r") do |event|;
+    event.message.delete; 
+    if event.user.nick != nil;  theUser = event.user.nick;  else;  theUser = event.user.name;  end;
+    if ( (theUser == "Allen the GM") || (theUser == "Allen.G.M.") || (theUser == "MaxAllen") ) then;
+      #mixtape used to ensure ties are handled
+      mixTape = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","0","1","2","3","4","5","6","7","8","9","A","B"].shuffle;      
+      alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      data = Array.new(37) { ['id', 'name', 'dex', 'adv', 'status', 'mixtape', 'final' ] } 
+    # open the connection to the databse
+      conn = PG.connect(ENV['DATABASE_URL'])
+         # Execute SQL query   
+         cursor = conn.exec("SELECT * FROM hitPoints WHERE status = 'Alive' ");
+         count = 0;
+         # Process query results
+                cursor.each do |doc|
+                      data[count][0] = doc["id"];
+                      data[count][1] = doc["name"];
+                      data[count][2] = doc["dexmod"];
+                      data[count][3] = doc["maxhp"];
+                      data[count][4] = doc["status"];
+                      data[count][5] = mixTape[x];
+                      data[count][6] = 0;
+                      count = count + 1;
+                end;
+      howMany = (data.length)-1;
+      (0..howMany).each do |x|;
+          if data[x][3] == 0 then;
+             data[x][6] = rand(1..20) + data[x][2];
+          else;
+             data[x][6] = [rand(1..20),rand(1..20)].max + data[x][2];
+          end;       
+      end;
+
+      # sorting the list of creatures
+      temp = Array.new(37) { ['id', 'name', 'dex', 'adv', 'status', 'mixtape', 'final' ] }; # temp sort storage
+          (0..(howMany*howMany)).each do |loop|;
+             (0..howMany-1).each do |x|;
+                if data[x][6] < data[x+1][6] then;
+                   (0..36).each do |t|;
+                       temp[t] = data[x]; # move all of [x] by [t] to the temporary storage 
+                   end;
+                   (0..36).each do |t|;
+                       data[x] = data[x+1]; # move all of [x+1] by [t] into [x] by [t]
+                   end;
+                   (0..36).each do |t|;
+                       data[x+1] = temp[t];  # move all of temp [t] into [x+1] by [t] to complete the sort exchange
+                   end;
+                end;
+             end;
+          end;
+          #now account for the same scores where the higher DEX score will go first.
+      temp = Array.new(37) { ['id', 'name', 'dex', 'adv', 'status', 'mixtape', 'final' ] }; # temp sort storage
+          (1..(howMany*howMany)).each do |loop|;
+             (1..howMany-1).each do |x|;
+                if data[x][6] == data[x+1][6] then;
+                   if data[x][2] < data[x+1][2]   # DEX mod is on position #2
+                      (0..36).each do |t|;
+                          temp[t] = data[x]; # move all of [x] by [t] to the temporary storage 
+                      end;
+                      (0..36).each do |t|;
+                          data[x] = data[x+1]; # move all of [x+1] by [t] into [x] by [t]
+                      end;
+                      (0..36).each do |t|;
+                          data[x+1] = temp[t];  # move all of temp [t] into [x+1] by [t] to complete the sort exchange
+                      end;
+                   end;
+                end;
+             end; 
+          end;
+          #now account for the same scores and same DEX score, use the random character column to determine who will go first.
+          temp = Array.new(37) { ['id', 'name', 'dex', 'adv', 'status', 'mixtape', 'final' ] }; # temp sort storage
+          (1..(howMany*howMany)).each do |loop|;
+            (1..howMany-1).each do |x|;
+                if (data[x][6] == data[x+1][6]) && (data[x][2] == data[x+1][2]) then;
+                   if data[x][5].ord > data[x+1][5].ord   # random character is in position 5 
+                      (0..36).each do |t|;
+                          temp[t] = data[x]; # move all of [x] by [t] to the temporary storage 
+                      end;
+                      (0..36).each do |t|;
+                          data[x] = data[x+1]; # move all of [x+1] by [t] into [x] by [t]
+                      end;
+                      (0..36).each do |t|;
+                          data[x+1] = temp[t];  # move all of temp [t] into [x+1] by [t] to complete the sort exchange
+                      end;
+                   end;
+                end;
+             end; 
+          end;
+          say = data.inspect.to_s;
+         
+    # drop existing database and create fresh activeInit database
+    conn.exec("DROP TABLE activeInit");   
+    result = conn.exec("CREATE TABLE activeInit (
+                        id integer NOT NULL,
+                        name varchar(31),
+                        dex integer,
+                        adv integer,
+                        status varchar(11),
+                        mixtape varchar(11),
+                        final integer,
+                        PRIMARY KEY (id)
+                        );");
+    # add ALIVE entries to the database
+    idVal = 0;
+    (0..36).each do |zed|
+        if data[zed][4] == 'alive' then
+           r.table('activeInit').insert({ :id => idVal, :final => data[zed][6], :name => data[zed][1], :dex => data[zed][2], :status => data[zed][4] }).run;
+           idVal = idVal + 1;
+        end;
+    end;
+    say = "**Ready to Rumble.**  Initiative rolling and sorting is complete. ";
+ 
+          event.respond say; 
+          else; 
+              event.respond "Who are you?";
+          end;
+end;          
 ###############################################################################################
 ###############################################################################################
 bot.run
