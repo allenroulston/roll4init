@@ -407,7 +407,7 @@ bot.message(start_with: "%r") do |event|;
            sqlCode = "INSERT INTO activeInit (id, name, dexmod, adv, status, mixtape, final) VALUES (" +
            idVal.to_s + ", '" + data[zed][1].to_s + "', " + data[zed][2].to_s + ", " + data[zed][3].to_s +
            ", '" + data[zed][4] + "', '" + data[zed][5] + "', " + data[zed][6].to_s + ")";
-           say = say + "\n" + sqlCode.slice(78,30);
+           say = say + "\n" + sqlCode.slice(78,40);
            result = conn.exec(sqlCode)
            idVal = idVal + 1;
        end;
