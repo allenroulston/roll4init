@@ -316,7 +316,7 @@ bot.message(start_with: "%r") do |event|;
                       data[count][2] = doc["dexmod"].to_i;
                       data[count][3] = doc["maxhp"].to_i;
                       data[count][4] = doc["status"];
-                      data[count][5] = mixTape[x];
+                      data[count][5] = mixTape[count];
                       data[count][6] = 0;
                       count = count + 1;
                 end;
