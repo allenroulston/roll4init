@@ -126,10 +126,19 @@ bot.message(start_with: "LOAD") do |event|;
 
    conn = PG.connect(ENV['DATABASE_URL'])
    result = conn.exec("INSERT INTO hitPoints (id, name, dexmod, maxhp, lowhp, status) VALUES
-                       (8, 'India', 3, 50, 50, 'Dead'),
-                       (9, 'Juliette', 2, 35, 35, 'Dead'),
-                       (10, 'Kilo', 1, 30, 30 , 'Alive'),
-                       (11, 'Lima', 0, 40, 40, 'Resting')
+                       (0, 'Alpha', 3, 50, 50, 'Dead'),
+                       (1, 'Bravo', 2, 35, 35, 'Dead'),
+                       (2, 'Charlie', 1, 30, 30 , 'Alive'),
+                       (3, 'Delta', 3, 50, 50, 'Dead'),
+                       (4, 'Echo', 2, 35, 35, 'Dead'),   
+                       (5, 'Foxtrot', 3, 50, 50, 'Dead'),
+                       (6, 'Golf', 2, 35, 35, 'Dead'),
+                       (7, 'Hotel', 0, 40, 40, 'Dead')
+                       (8, 'India', 1, 30, 30 , 'Alive'),
+                       (9, 'Juliette', 3, 50, 50, 'Dead'),
+                       (11, 'Kilo', 2, 35, 35, 'Dead'),
+                       (12, 'Lima', 1, 30, 30 , 'Alive'),
+                       (13, 'Mike', 0, 40, 40, 'Dead')
                        ");
    conn.close
    event.respond result.inspect;      
