@@ -106,7 +106,7 @@ end;
 ###############################################################################################
 bot.message(start_with: "CREATE-AI") do |event|;
    conn = PG.connect(ENV['DATABASE_URL'])
-   conn.exec("DROP TABLE hitPoints");
+   conn.exec("DROP TABLE activeInit");
    result = conn.exec("CREATE TABLE activeInit (
                        id integer NOT NULL,
                        name varchar(31),
