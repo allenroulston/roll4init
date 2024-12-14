@@ -59,7 +59,6 @@ bot.message(start_with: "INITREAD") do |event|;
    say = say + result.inspect + "\n\n";
    result.each do |row|
      say = say + row.inspect + " \n";
-     say = say + row.fetch("id").to_s + " " + row.fetch("name").to_s + " \n";
    end
    conn.close;   
    event.respond say;  
@@ -435,7 +434,23 @@ bot.message(start_with: "%r") do |event|;
           else; 
               event.respond "Who are you?";
           end;
-end;          
+end;
+##################################################################################################################
+##################################################################################################################
+bot.message(start_with: "%n") do |event|; #next initiative revealed
+  say = ""; # start with nothing in variable say
+  conn = PG.connect(ENV['DATABASE_URL'])
+      # Build SQL statement (below)
+        sqlCode = "SELECT * FROM activeInit LIMIT 1";
+        say = say + sqlCode;
+      # Execute SQL CODE 
+        result = conn.exec(sqlCode);
+        result.each do |item|
+            say = say + "\n>" + item.inspect;
+        end;
+  conn.close;
+  event.respond say;
+end;       
 ###############################################################################################
 ###############################################################################################
 bot.run
