@@ -297,7 +297,7 @@ end;
 ##################################################################################################################
 ##################################################################################################################
 bot.message(start_with: "%r") do |event|;
-    event.message.delete; 
+    event.message.delete; say = "";
     if event.user.nick != nil;  theUser = event.user.nick;  else;  theUser = event.user.name;  end;
     if ( (theUser == "Allen the GM") || (theUser == "Allen.G.M.") || (theUser == "MaxAllen") ) then;
       #mixtape used to ensure ties are handled
