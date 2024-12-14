@@ -401,7 +401,7 @@ bot.message(start_with: "%r") do |event|;
     idVal = 0;
     (0..36).each do |zed|
         if data[zed][4] == 'Alive' then
-          say = say + "\n> " + idVal.to_s + " " + data[zed][6].to_s + " " + data[zed][2].to_s + " " + data[zed][4].to_s;
+          say = say + "\n> " + idVal.to_s + " " + data[zed][6].to_s + " " + data[zed][1].to_s + " " + data[zed][2].to_s + " " + data[zed][4].to_s;
 #           r.table('activeInit').insert({ :id => idVal, :final => data[zed][6], :name => data[zed][1], :dex => data[zed][2], :status => data[zed][4] }).run;
            idVal = idVal + 1;
         end;
