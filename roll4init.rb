@@ -133,7 +133,7 @@ bot.message(start_with: "LOAD") do |event|;
                        (4, 'Echo', 2, 35, 35, 'Dead'),   
                        (5, 'Foxtrot', 3, 50, 50, 'Dead'),
                        (6, 'Golf', 2, 35, 35, 'Dead'),
-                       (7, 'Hotel', 0, 40, 40, 'Dead')
+                       (7, 'Hotel', 0, 40, 40, 'Dead'),
                        (8, 'India', 1, 30, 30 , 'Alive'),
                        (9, 'Juliette', 3, 50, 50, 'Dead'),
                        (11, 'Kilo', 2, 35, 35, 'Dead'),
