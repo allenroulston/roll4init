@@ -384,13 +384,12 @@ bot.message(start_with: "%r") do |event|;
                 end;
              end; 
           end;
-         
     # drop existing database and create fresh activeInit database
     conn.exec("DROP TABLE activeInit");   
     result = conn.exec("CREATE TABLE activeInit (
                         id integer NOT NULL,
                         name varchar(31),
-                        dex integer,
+                        dexmod integer,
                         adv integer,
                         status varchar(11),
                         mixtape varchar(11),
@@ -398,13 +397,18 @@ bot.message(start_with: "%r") do |event|;
                         PRIMARY KEY (id)
                         );");
     # add ALIVE entries to the database
+    conn = PG.connect(ENV['DATABASE_URL'])
     idVal = 0;
     (0..36).each do |zed|
-        if data[zed][4] == 'Alive' then
-          say = say + "\n> " + idVal.to_s + " " + data[zed][6].to_s + " " + data[zed][1].to_s + " " + data[zed][2].to_s + " " + data[zed][4].to_s;
+        
+#.          say = say + "\n> " + idVal.to_s + " " + data[zed][6].to_s + " " + data[zed][1].to_s + " " + data[zed][2].to_s + " " + data[zed][4].to_s;
 #           r.table('activeInit').insert({ :id => idVal, :final => data[zed][6], :name => data[zed][1], :dex => data[zed][2], :status => data[zed][4] }).run;
+           sqlCode = "( INSERT INTO activeInit (id, name, dexmod, adv, status, mixtape, final) VALUES (" +
+           idVal.to_s + ", '" + data[zed][1].to_s + "', " + data[zed][2].to_s + ", " + data[zed][3].to_s +
+           ", '" + data[zed][4] + "', " + data[zed][6].to_s + "))";
+           say = say + "\n" + sqlCode;
+           result = conn.exec(sqlCode)
            idVal = idVal + 1;
-        end;
     end;
     
     say = say + "\n" + "**Ready to Rumble.**  Initiative rolling and sorting is complete. ";
