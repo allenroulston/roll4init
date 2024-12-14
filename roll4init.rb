@@ -304,8 +304,8 @@ bot.message(start_with: "%r") do |event|;
                 cursor.each do |doc|
                       data[count][0] = doc["id"];
                       data[count][1] = doc["name"];
-                      data[count][2] = doc["dexmod"];
-                      data[count][3] = doc["maxhp"];
+                      data[count][2] = doc["dexmod"].to_i;
+                      data[count][3] = doc["maxhp"].to_i;
                       data[count][4] = doc["status"];
                       data[count][5] = mixTape[x];
                       data[count][6] = 0;
