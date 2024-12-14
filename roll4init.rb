@@ -446,7 +446,9 @@ bot.message(start_with: "%n") do |event|; #next initiative revealed
       # Execute SQL CODE 
         result = conn.exec(sqlCode);
         result.each do |item|
-            say = say + "\n>" + item.inspect;
+            say = say + "\n" + item.inspect;
+            theID = item.fetch("id").to_s;
+            say = say + "\n> the ID " + theID;
         end;
   conn.close;
   event.respond say;
