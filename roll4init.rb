@@ -403,9 +403,9 @@ bot.message(start_with: "%r") do |event|;
         
 #.          say = say + "\n> " + idVal.to_s + " " + data[zed][6].to_s + " " + data[zed][1].to_s + " " + data[zed][2].to_s + " " + data[zed][4].to_s;
 #           r.table('activeInit').insert({ :id => idVal, :final => data[zed][6], :name => data[zed][1], :dex => data[zed][2], :status => data[zed][4] }).run;
-           sqlCode = "( INSERT INTO activeInit (id, name, dexmod, adv, status, mixtape, final) VALUES (" +
+           sqlCode = "INSERT INTO activeInit (id, name, dexmod, adv, status, mixtape, final) VALUES (" +
            idVal.to_s + ", '" + data[zed][1].to_s + "', " + data[zed][2].to_s + ", " + data[zed][3].to_s +
-           ", '" + data[zed][4] + "', " + data[zed][6].to_s + "))";
+           ", '" + data[zed][4] + "', " + data[zed][6].to_s + ")";
            say = say + "\n" + sqlCode;
            result = conn.exec(sqlCode)
            idVal = idVal + 1;
