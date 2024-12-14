@@ -451,7 +451,6 @@ bot.message(start_with: "%n") do |event|; #next initiative revealed
             theID = item.fetch("id").to_s;
             say = say + "\n> the ID " + theID;
             sqlCode = "DELETE FROM activeInit WHERE id = " + theID + ";";
-            say = say "\n" + 
         end;
   conn.close;
   event.respond say;
