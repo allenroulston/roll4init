@@ -442,7 +442,6 @@ bot.message(start_with: "%n") do |event|; #next initiative revealed
   conn = PG.connect(ENV['DATABASE_URL'])
       # Build SQL statement (below)
         sqlCode = "SELECT * FROM activeInit LIMIT 1";
-        say = say + sqlCode;
       # Execute SQL CODE 
         result = conn.exec(sqlCode);
         goNogo = result.ntuples.to_i;
