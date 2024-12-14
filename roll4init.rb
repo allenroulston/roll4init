@@ -48,6 +48,22 @@ bot.message(start_with: "READ") do |event|;
    conn.close;   
    event.respond say;  
 end;
+##################################################################################################################
+##################################################################################################################
+bot.message(start_with: "INITREAD") do |event|;
+   say = "Lump Read of the Database Content: \n";
+   conn = PG.connect(ENV['DATABASE_URL'])
+   # Execute SQL query   
+   result = conn.exec("SELECT * FROM activeInit");
+   # Process query results
+   say = say + result.inspect + "\n\n";
+   result.each do |row|
+     say = say + row.inspect + " \n";
+     say = say + row.fetch("id").to_s + " " + row.fetch("name").to_s + " \n";
+   end
+   conn.close;   
+   event.respond say;  
+end;
 ###############################################################################################
 ###############################################################################################
 bot.message(start_with: "tdmg") do |event|;
