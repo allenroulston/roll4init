@@ -89,7 +89,7 @@ end;
 bot.message(start_with: "CREATE") do |event|;
 
    conn = PG.connect(ENV['DATABASE_URL'])
-   conn.exec("DROP TABLE hitPoints");
+   #conn.exec("DROP TABLE hitPoints");
    result = conn.exec("CREATE TABLE hitPoints (
                        id integer NOT NULL,
                        dexmod integer,
