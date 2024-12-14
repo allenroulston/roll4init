@@ -384,7 +384,6 @@ bot.message(start_with: "%r") do |event|;
                 end;
              end; 
           end;
-          say = data.inspect.to_s;
          
     # drop existing database and create fresh activeInit database
     conn.exec("DROP TABLE activeInit");   
@@ -402,11 +401,13 @@ bot.message(start_with: "%r") do |event|;
     idVal = 0;
     (0..36).each do |zed|
         if data[zed][4] == 'alive' then
-           r.table('activeInit').insert({ :id => idVal, :final => data[zed][6], :name => data[zed][1], :dex => data[zed][2], :status => data[zed][4] }).run;
+          say = say + "\n> " + idVal.to_s + " " + data[zed][6].to_s + " " + data[zed][2].to_s + " " + data[zed][4].to_s;
+#           r.table('activeInit').insert({ :id => idVal, :final => data[zed][6], :name => data[zed][1], :dex => data[zed][2], :status => data[zed][4] }).run;
            idVal = idVal + 1;
         end;
     end;
-    say = say + "\n" "**Ready to Rumble.**  Initiative rolling and sorting is complete. ";
+    
+    say = say + "\n" + "**Ready to Rumble.**  Initiative rolling and sorting is complete. ";
  
           event.respond say; 
           else; 
