@@ -351,7 +351,7 @@ bot.message(start_with: "%r") do |event|;
           (1..(howMany*howMany)).each do |loop|;
              (1..howMany-1).each do |x|;
                 if data[x][6] == data[x+1][6] then;
-                   if data[x][2] < data[x+1][2]   # DEX mod is on position #2
+                   if (data[x][2].to_s) < (data[x+1][2].to_s)   # DEX mod is on position #2
                       (0..36).each do |t|;
                           temp[t] = data[x]; # move all of [x] by [t] to the temporary storage 
                       end;
