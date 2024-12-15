@@ -141,19 +141,32 @@ bot.message(start_with: "LOAD") do |event|;
 
    conn = PG.connect(ENV['DATABASE_URL'])
    result = conn.exec("INSERT INTO hitPoints (id, name, dexmod, maxhp, lowhp, status) VALUES
-                       (0, 'Alpha', 3, 50, 50, 'Dead'),
-                       (1, 'Bravo', 2, 35, 35, 'Dead'),
-                       (2, 'Charlie', 1, 30, 30 , 'Alive'),
-                       (3, 'Delta', 3, 50, 50, 'Dead'),
-                       (4, 'Echo', 2, 35, 35, 'Dead'),   
-                       (5, 'Foxtrot', 3, 50, 50, 'Dead'),
-                       (6, 'Golf', 2, 35, 35, 'Dead'),
-                       (7, 'Hotel', 0, 40, 40, 'Dead'),
-                       (8, 'India', 1, 30, 30 , 'Alive'),
-                       (9, 'Juliette', 3, 50, 50, 'Dead'),
-                       (11, 'Kilo', 2, 35, 35, 'Dead'),
-                       (12, 'Lima', 1, 30, 30 , 'Alive'),
-                       (13, 'Mike', 0, 40, 40, 'Dead')
+#                       (0, 'Alpha', 3, 50, 50, 'Dead'),
+#                       (1, 'Bravo', 2, 35, 35, 'Dead'),
+#                       (2, 'Charlie', 1, 30, 30 , 'Dead'),
+#                       (3, 'Delta', 3, 50, 50, 'Dead'),
+#                       (4, 'Echo', 2, 35, 35, 'Dead'),   
+#                       (5, 'Foxtrot', 3, 50, 50, 'Dead'),
+#                       (6, 'Golf', 2, 35, 35, 'Dead'),
+#                       (7, 'Hotel', 0, 40, 40, 'Dead'),
+#                       (8, 'India', 1, 30, 30 , 'Dead'),
+#                       (9, 'Juliette', 3, 50, 50, 'Dead'),
+#                       (11, 'Kilo', 2, 35, 35, 'Dead'),
+#                       (12, 'Lima', 1, 30, 30 , 'Dead'),
+#                       (13, 'Mike', 0, 40, 40, 'Dead'),
+                       (14, 'November', 3, 50, 50, 'Dead'),
+                       (15, 'Oscar', 2, 35, 35, 'Dead'),
+                       (16, 'Papa', 1, 30, 30 , 'Dead'),
+                       (17, 'Quebec', 3, 50, 50, 'Dead'),
+                       (18, 'Romeo', 2, 35, 35, 'Dead'),   
+                       (19, 'Sierra', 3, 50, 50, 'Dead'),
+                       (20, 'Tango', 2, 35, 35, 'Dead'),
+                       (21, 'Uniform', 0, 40, 40, 'Dead'),
+                       (22, 'Victor', 1, 30, 30 , 'Dead'),
+                       (23, 'Whiskey', 3, 50, 50, 'Dead'),
+                       (24, 'X-Ray', 2, 35, 35, 'Dead'),
+                       (25, 'Yankee', 1, 30, 30 , 'Dead'),
+                       (26, 'Zulu', 0, 40, 40, 'Dead')
                        ");
    conn.close
    event.respond result.inspect;      
