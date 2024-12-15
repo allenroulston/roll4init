@@ -446,17 +446,18 @@ bot.message(start_with: "%n") do |event|; #next initiative revealed
         result = conn.exec(sqlCode);
         goNogo = result.ntuples.to_i;
         if goNogo != 0 then;
-           say = say + "\n" + result.inspect;
            result.each do |item|
                  say = say + "\n" + item.inspect;
                  theID = item.fetch("id").to_s;
-                 say = say + "\n> the ID " + theID;
+                 theName = item.fetch("name").to_s;
+                 theFinal = item.fetch("final").to_s;
+                 say = say + "\n>[" + theID +"][" + theFinal +"] **" + theNAme + "**";
                  sqlCode = "DELETE FROM activeInit WHERE id = " + theID + ";";
                  conn.exec(sqlCode);
            end;
-         else;
-           say = say + "\n ** END OF THE COMBAT ROUND**";
-         end;
+        else;
+           say = say + "\n** END OF THE COMBAT ROUND**";
+        end;
         
   conn.close;
   event.respond say;
