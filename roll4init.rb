@@ -439,6 +439,7 @@ end;
 ##################################################################################################################
 bot.message(start_with: "%n") do |event|; #next initiative revealed
   say = ""; # start with nothing in variable say
+  one = "```"; two =  "```";
   conn = PG.connect(ENV['DATABASE_URL'])
       # Build SQL statement (below)
         sqlCode = "SELECT * FROM activeInit LIMIT 1";
@@ -450,7 +451,7 @@ bot.message(start_with: "%n") do |event|; #next initiative revealed
                  theID = item.fetch("id").to_s;
                  theName = item.fetch("name").to_s;
                  theFinal = item.fetch("final").to_s;
-                 say = say + "\n>" + "[" + theID +"][" + theFinal +"] **" + theName + "** has initiative";
+                 say = say + one + (i + theID +")[" + theFinal +"] **" + theName + "** has initiative" + two;
                  sqlCode = "DELETE FROM activeInit WHERE id = " + theID + ";";
                  conn.exec(sqlCode);
            end;
