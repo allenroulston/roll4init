@@ -43,7 +43,8 @@ bot.message(start_with: "READ") do |event|;
    # say = say + result.inspect + "\n\n";
    result.each do |row|
      # say = say + row.inspect + " \n";
-     say = say + row.fetch("id").to_s + " " + row.fetch("name").to_s + " \n";
+     say = say + row.fetch("id").to_s + " " + row.fetch("name").to_s + " " + row.fetch("maxhp") + " " +
+           row.fetch("lowhp") + " " + row.fetch("status") + " \n";
    end
    conn.close;   
    event.respond say;  
