@@ -104,7 +104,7 @@ end;
 bot.message(start_with: "CREATE") do |event|;
 
    conn = PG.connect(ENV['DATABASE_URL'])
-   #conn.exec("DROP TABLE hitPoints");
+   conn.exec("DROP TABLE hitPoints");
    result = conn.exec("CREATE TABLE hitPoints (
                        id integer NOT NULL,
                        dexmod integer,
@@ -138,34 +138,44 @@ end;
 ###############################################################################################
 ###############################################################################################
 bot.message(start_with: "LOAD") do |event|;
-  #                       (0, 'Alpha', 3, 50, 50, 'Dead'),
-  #                       (1, 'Bravo', 2, 35, 35, 'Dead'),
-  #                       (2, 'Charlie', 1, 30, 30 , 'Dead'),
-  #                       (3, 'Delta', 3, 50, 50, 'Dead'),
-  #                       (4, 'Echo', 2, 35, 35, 'Dead'),   
-  #                       (5, 'Foxtrot', 3, 50, 50, 'Dead'),
-  #                       (6, 'Golf', 2, 35, 35, 'Dead'),
-  #                       (7, 'Hotel', 0, 40, 40, 'Dead'),
-  #                       (8, 'India', 1, 30, 30 , 'Dead'),
-  #                       (9, 'Juliette', 3, 50, 50, 'Dead'),
-  #                       (11, 'Kilo', 2, 35, 35, 'Dead'),
-  #                       (12, 'Lima', 1, 30, 30 , 'Dead'),
-  #                       (13, 'Mike', 0, 40, 40, 'Dead'),
    conn = PG.connect(ENV['DATABASE_URL'])
    result = conn.exec("INSERT INTO hitPoints (id, name, dexmod, maxhp, lowhp, status) VALUES
-                       (14, 'November', 3, 50, 50, 'Dead'),
-                       (15, 'Oscar', 2, 35, 35, 'Dead'),
-                       (16, 'Papa', 1, 30, 30 , 'Dead'),
-                       (17, 'Quebec', 3, 50, 50, 'Dead'),
-                       (18, 'Romeo', 2, 35, 35, 'Dead'),   
-                       (19, 'Sierra', 3, 50, 50, 'Dead'),
-                       (20, 'Tango', 2, 35, 35, 'Dead'),
-                       (21, 'Uniform', 0, 40, 40, 'Dead'),
-                       (22, 'Victor', 1, 30, 30 , 'Dead'),
-                       (23, 'Whiskey', 3, 50, 50, 'Dead'),
-                       (24, 'X-Ray', 2, 35, 35, 'Dead'),
-                       (25, 'Yankee', 1, 30, 30 , 'Dead'),
-                       (26, 'Zulu', 0, 40, 40, 'Dead')
+                       (0, 'Alpha', 3, 50, 50, 'Dead'),
+                       (1, 'Bravo', 2, 35, 35, 'Dead'),
+                       (2, 'Charlie', 1, 30, 30, 'Dead'),
+                       (3, 'Delta', 3, 50, 50, 'Dead'),
+                       (4, 'Echo', 2, 35, 35, 'Dead'),   
+                       (5, 'Foxtrot', 3, 50, 50, 'Dead'),
+                       (6, 'Golf', 2, 35, 35, 'Dead'),
+                       (7, 'Hotel', 0, 40, 40, 'Dead'),
+                       (8, 'India', 1, 30, 30, 'Dead'),
+                       (9, 'Juliette', 3, 50, 50, 'Dead'),
+                       (10, 'Kilo', 2, 35, 35, 'Dead'),
+                       (11, 'Lima', 1, 30, 30, 'Dead'),
+                       (12, 'Mike', 0, 40, 40, 'Dead'),
+                       (13, 'November', 3, 50, 50, 'Dead'),
+                       (14, 'Oscar', 2, 35, 35, 'Dead'),
+                       (15, 'Papa', 1, 30, 30, 'Dead'),
+                       (16, 'Quebec', 3, 50, 50, 'Dead'),
+                       (17, 'Romeo', 2, 35, 35, 'Dead'),   
+                       (18, 'Sierra', 3, 50, 50, 'Dead'),
+                       (19, 'Tango', 2, 35, 35, 'Dead'),
+                       (20, 'Uniform', 0, 40, 40, 'Dead'),
+                       (21, 'Victor', 1, 30, 30, 'Dead'),
+                       (22, 'Whiskey', 3, 50, 50, 'Dead'),
+                       (23, 'X-Ray', 2, 35, 35, 'Dead'),
+                       (24, 'Yankee', 1, 30, 30, 'Dead'),
+                       (25, 'Zulu', 0, 40, 40, 'Dead'),
+                       (26, 'ALBERT', 0, 1, 1, 'Dead'),
+                       (27, 'BAKER', 0, 1, 1, 'Dead'),
+                       (28, 'CARL', 0, 1, 1, 'Dead'),
+                       (29, 'DAVE', 0, 1, 1, 'Dead'),
+                       (30, 'EDGAR', 0, 1, 1, 'Dead'),
+                       (31, 'FRED', 0, 1, 1, 'Dead'),
+                       (32, 'GREG', 0, 1, 1, 'Dead'),
+                       (33, 'HARRY', 0, 1, 1, 'Dead'),
+                       (34, 'IGGY', 0, 1, 1, 'Dead'),
+                       (35, 'JOHN', 0, 1, 1 , 'Dead')
                        ");
    conn.close
    event.respond result.inspect;      
