@@ -447,7 +447,6 @@ bot.message(start_with: "%n") do |event|; #next initiative revealed
         goNogo = result.ntuples.to_i;
         if goNogo != 0 then;
            result.each do |item|
-                 say = say + "\n" + item.inspect;
                  theID = item.fetch("id").to_s;
                  theName = item.fetch("name").to_s;
                  theFinal = item.fetch("final").to_s;
