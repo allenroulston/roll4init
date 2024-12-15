@@ -40,9 +40,9 @@ bot.message(start_with: "READ") do |event|;
    # Execute SQL query   
    result = conn.exec("SELECT * FROM hitPoints");
    # Process query results
-   #say = say + result.inspect + "\n\n";
+   # say = say + result.inspect + "\n\n";
    result.each do |row|
-     say = say + row.inspect + " \n";
+     # say = say + row.inspect + " \n";
      say = say + row.fetch("id").to_s + " " + row.fetch("name").to_s + " \n";
    end
    conn.close;   
