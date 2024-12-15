@@ -189,7 +189,7 @@ bot.message(start_with: "makethemMARDS") do |event|;
    sqlCode = "UPDATE hitPoints SET name = 'ALLEN', dexmod = 5, status = 'Alive' WHERE id = 26;";
    # Execute SQL update (below)
    conn.exec(sqlCode);
-   sqlCode = "UPDATE hitPoints SET name = 'BOBO', dexmod = 4, status = 'Alive'' WHERE id = 27;";
+   sqlCode = "UPDATE hitPoints SET name = 'BOBO', dexmod = 4, status = 'Alive' WHERE id = 27;";
    conn.exec(sqlCode);   
    sqlCode = "UPDATE hitPoints SET name = 'JANE', dexmod = 3, status = 'Alive' WHERE id = 35;";
    conn.exec(sqlCode);
