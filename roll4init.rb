@@ -186,12 +186,12 @@ end;
 bot.message(start_with: "makethemMARDS") do |event|;
    conn = PG.connect(ENV['DATABASE_URL'])
    # Build SQL statement (below)
-   sqlCode = "UPDATE hitPoints SET name = 'ALLEN', dexmod = 5, status = "Alive" WHERE id = 26;";
+   sqlCode = "UPDATE hitPoints SET name = 'ALLEN', dexmod = 5, status = 'Alive' WHERE id = 26;";
    # Execute SQL update (below)
    conn.exec(sqlCode);
-   sqlCode = "UPDATE hitPoints SET name = 'BOBO', dexmod = 4, status = "Alive" WHERE id = 27;";
+   sqlCode = "UPDATE hitPoints SET name = 'BOBO', dexmod = 4, status = 'Alive'' WHERE id = 27;";
    conn.exec(sqlCode);   
-   sqlCode = "UPDATE hitPoints SET name = 'JANE', dexmod = 3, status = "Alive" WHERE id = 35;";
+   sqlCode = "UPDATE hitPoints SET name = 'JANE', dexmod = 3, status = 'Alive' WHERE id = 35;";
    conn.exec(sqlCode);
    conn.close
    event.respond "MARDS installed";      
@@ -201,12 +201,12 @@ end;
 bot.message(start_with: "makethemGHEDD") do |event|;
    conn = PG.connect(ENV['DATABASE_URL'])
    # Build SQL statement (below)
-   sqlCode = "UPDATE hitPoints SET name = 'GHEDD26', dexmod = 5, status = "Alive" WHERE id = 26;";
+   sqlCode = "UPDATE hitPoints SET name = 'GHEDD26', dexmod = 5, status = 'Alive' WHERE id = 26;";
    # Execute SQL update (below)
    conn.exec(sqlCode);
-   sqlCode = "UPDATE hitPoints SET name = 'GHEDD27', dexmod = 4, status = "Alive" WHERE id = 27;";
+   sqlCode = "UPDATE hitPoints SET name = 'GHEDD27', dexmod = 4, status = 'Alive' WHERE id = 27;";
    conn.exec(sqlCode);   
-   sqlCode = "UPDATE hitPoints SET name = 'GHEDD35', dexmod = 3, status = "Alive" WHERE id = 35;";
+   sqlCode = "UPDATE hitPoints SET name = 'GHEDD35', dexmod = 3, status = 'Alive' WHERE id = 35;";
    conn.exec(sqlCode);
    conn.close
    event.respond "GHEDD installed";      
