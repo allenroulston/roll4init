@@ -38,7 +38,7 @@ bot.message(start_with: "READ") do |event|;
    say = "Lump Read of the Database Content: \n";
    conn = PG.connect(ENV['DATABASE_URL'])
    # Execute SQL query   
-   result = conn.exec("SELECT * FROM hitPoints");
+   result = conn.exec("SELECT * FROM hitPoints ORDER BY id");
    # Process query results
    # say = say + result.inspect + "\n\n";
    result.each do |row|
