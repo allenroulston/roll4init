@@ -314,7 +314,7 @@ bot.message(start_with: "rolltheHP") do |event|;
                       theDex = data[3].to_s; #acquire the Dexterity Modifier from position [3]
                   end;
                   theName = manyNames[theID][rand(0..19)]; # pull a name from the large selection of names                
-           sqlCode = "UPDATE hitPoints SET name = " + theName + ", lowhp = " + totalHP.to_s + ", maxhp = " + totalHP.to_s + ", status = '" + 
+           sqlCode = "UPDATE hitPoints SET name = '" + theName + "', lowhp = " + totalHP.to_s + ", maxhp = " + totalHP.to_s + ", status = '" + 
                      theStatus + "' , dexmod = " + theDex.to_s + " WHERE id = " + theID.to_s + ";";
            say = say + "\n" + sqlCode;
          # Execute SQL update 
