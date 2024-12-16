@@ -184,6 +184,7 @@ end;
 ###############################################################################################
 ###############################################################################################
 bot.message(start_with: "makethemMARDS") do |event|;
+   event.message.delete;
    conn = PG.connect(ENV['DATABASE_URL'])
    # Build SQL statement (below)
    sqlCode = "UPDATE hitPoints SET name = 'DALHA', dexmod = 3, status = 'Alive' WHERE id = 26;";
@@ -213,6 +214,7 @@ end;
 ###############################################################################################
 ###############################################################################################
 bot.message(start_with: "makethemGHEDD") do |event|;
+   event.message.delete;
    conn = PG.connect(ENV['DATABASE_URL'])
    # Build SQL statement (below)
    sqlCode = "UPDATE hitPoints SET name = 'BEAU', dexmod = 2, status = 'Alive' WHERE id = 26;";
@@ -326,6 +328,7 @@ end;
 ##################################################################################################################
 ##################################################################################################################
 bot.message(start_with: "%d") do |event|;
+  event.message.delete;
   say = "Making peeps DEAD \n";
   alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   # establish a connection with the database
@@ -347,6 +350,7 @@ end;
 ##################################################################################################################
 ##################################################################################################################
 bot.message(start_with: "%a") do |event|;
+  event.message.delete;
   say = "Making peeps ALIVE \n";
   alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   # establish a connection with the database
@@ -368,7 +372,7 @@ end;
 ##################################################################################################################
 ##################################################################################################################
 bot.message(start_with: "%x") do |event|; #DEXTERITY ASSIGNMENT
-  say = "Assigning peeps DEX \n";
+  event.message.delete;   say = "Assigning peeps DEX \n";
   alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   inputStr = event.content.slice(2,50);
   colonHere = inputStr.index(':');
@@ -521,7 +525,7 @@ end;
 ##################################################################################################################
 ##################################################################################################################
 bot.message(start_with: "%n") do |event|; #next initiative revealed
-  say = ""; # start with nothing in variable say
+  event.message.delete;  say = ""; # start with nothing in variable say
   one = "```"; two =  "```";
   conn = PG.connect(ENV['DATABASE_URL'])
       # Build SQL statement (below)
