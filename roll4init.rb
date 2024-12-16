@@ -377,7 +377,7 @@ bot.message(start_with: "%x") do |event|; #DEXTERITY ASSIGNMENT
   inputStr = event.content.slice(2,50);
   colonHere = inputStr.index(':');
   if colonHere == nil then;
-     say = "Command Format: !d-2:ABC\nTake note of the colon.";
+     say = "Command Format: %x-2:ABC\nTake note of the colon.";
   else;
          conn = PG.connect(ENV['DATABASE_URL'])
          goDex = inputStr.slice(0,colonHere).to_i;
@@ -387,9 +387,10 @@ bot.message(start_with: "%x") do |event|; #DEXTERITY ASSIGNMENT
                theID = check;
                # Build SQL statement (below)
                  sqlCode = "UPDATE hitPoints SET dexmod = " + goDex.to_s + " WHERE id = " + theID.to_s + ";\n";
-                 say = say + sqlCode;
+                 #say = say + sqlCode;
                # Execute SQL update 
-                 conn.exec(sqlCode); 
+                 returnCode = conn.exec(sqlCode);
+                 say = say + "\n" + returnCode.inspect; 
              end;
          end;
      conn.close;
