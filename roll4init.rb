@@ -312,7 +312,7 @@ bot.message(start_with: "rolltheHP") do |event|;
                       theID = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".index(letter); # points to the appropriate ID for the letter
                       theStatus = data[1].to_s; #acquire the status from position [1]
                       theDex = data[3].to_s; #acquire the Dexterity Modifier from position [3]
-                      theName = manyNames[theID][(rand(0..19)];
+                      theName = manyNames[theID][rand(0..19)];
                   end;
            sqlCode = "UPDATE hitPoints SET name = " + theName + " lowhp = " + totalHP.to_s + ", maxhp = " + totalHP.to_s + ", status = '" + 
                      theStatus + "' , dexmod = " + theDex.to_s + " WHERE id = " + theID.to_s + ";";
