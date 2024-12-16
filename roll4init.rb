@@ -292,39 +292,42 @@ bot.message(start_with: "rolltheHP") do |event|;
   ["Yara","Yngve","Yannick","Yvette","Yngvild","Yara","Ysolda","Ysabel","Yolantha","Ysmay","Yolanda","Yorrick","Yudelle","Yvonne","Yuliana","Ysabel","Ysmara","Ywain","Yvaine","Ylva"],
   ["Zabel","Zalman","Zaneta","Zanthe","Zeno","Zesiro","Zethar","Zephyra","Ziegler","Zigor","Zilke","Ziva","Zobad","Zora","Zosime","Zsigmond","Zven","Zwart","Zyta","Zyrus"]];  
   adjectives =
-  ["happy", "sad", "tall", "short", "bright", "dark", "quiet", "loud", "fast", "slow", "smooth", "rough", "strong",
-    "weak", "heavy", "light", "hot", "cold", "clear", "cloudy", "sharp", "dull", "shiny", "matte", "fresh", "stale",
-    "wet", "dry", "soft", "hard", "kind", "mean", "brave", "timid", "cheerful", "gloomy", "intelligent", "foolish",
-    "calm", "anxious", "polite", "rude", "generous", "selfish", "honest", "deceitful", "loyal", "disloyal", "curious",
-    "indifferent", "diligent", "lazy", "humble", "arrogant", "neat", "messy", "cautious", "reckless", "patient",
-    "impatient", "bold", "shy", "creative", "unimaginative", "enthusiastic", "apathetic", "gentle", "harsh",
-    "humorous", "serious", "loving", "hateful", "optimistic", "pessimistic", "organized", "disorganized", "proud",
-    "modest", "resourceful", "helpless", "sociable", "introverted", "thoughtful", "thoughtless", "wise", "silly",
-    "youthful", "aged", "zany", "stern", "attentive", "absent-minded", "charming", "unappealing", "efficient",
-    "inefficient", "elegant", "clumsy", "exuberant", "restrained", "faithful", "unfaithful", "generous", "stingy",
-    "helpful", "unhelpful", "imaginative", "uncreative", "joyful", "sorrowful", "knowledgeable", "ignorant", "lively",
-    "lethargic", "mature", "immature", "obedient", "rebellious", "peaceful", "turbulent", "respectful", "disrespectful",
-    "sensible", "foolish", "sophisticated", "unsophisticated", "talented", "untalented", "valiant", "cowardly", "witty",
-    "dull", "agreeable", "disagreeable", "ambitious", "lazy", "courteous", "discourteous", "determined", "hesitant",
-    "effective", "ineffective", "fortunate", "unfortunate", "gracious", "ungracious", "hardworking", "idle",
-    "inventive", "uninventive", "judicious", "indiscreet", "lively", "boring", "meticulous", "careless", "noble",
-    "ignoble", "optimistic", "pessimistic", "persistent", "wavering", "reliable", "unreliable", "sincere", "insincere",
-    "tidy", "untidy", "understanding", "indifferent", "versatile", "limited", "warm", "cold", "youthful", "old",
-    "zealous", "apathetic", "ambitious", "unambitious", "brave", "cowardly", "confident", "insecure", "dynamic",
-    "stagnant", "energetic", "sluggish", "friendly", "hostile", "generous", "greedy", "honest", "dishonest", "inventive",
-    "unimaginative", "just", "unjust", "knowledgeable", "ignorant", "loyal", "disloyal", "mindful", "thoughtless",
-    "noble", "base", "observant", "oblivious", "passionate", "indifferent", "quiet", "noisy", "resilient", "fragile",
-    "sincere", "hypocritical", "tenacious", "yielding", "unique", "common", "vibrant", "dull", "wise", "foolish",
-    "youthful", "senile", "zealous", "apathetic", "ambitious", "unambitious", "brave", "cowardly", "confident", "shy",
-    "diligent", "lazy", "earnest", "insincere", "faithful", "unfaithful", "generous", "stingy", "honest", "deceitful",
-    "inventive", "unoriginal", "joyful", "sorrowful", "kind", "cruel", "loyal", "treacherous", "mature", "childish",
-    "noble", "base", "observant", "inattentive", "patient", "impatient", "quiet", "loud", "resilient", "delicate", 
-    "sincere", "hypocritical", "thoughtful", "thoughtless", "unique", "ordinary", "wise", "unwise", "youthful", "aged",
-    "zealous", "indifferent", "brave", "timid", "confident", "insecure", "diligent", "lax", "earnest", "apathetic",
-    "faithful", "treacherous", "generous", "greedy", "honest", "dishonest", "inventive", "unimaginative", "joyful",
-    "sorrowful", "kind", "harsh", "loyal", "faithless", "mature", "immature", "noble", "ignoble", "observant",
-    "negligent", "patient", "impatient", "quiet", "noisy", "resilient", "delicate", "sincere", "insincere", "thoughtful",
-    "careless", "unique", "common", "wise", "unwise", "youthful", "senile", "zealous", "indifferent"];
+  ["happy", "sad", "tall", "short", "bright", "dark", "quiet", "loud", "fast", "slow", "smooth", "rough", "strong", "weak", "heavy", "light",
+    "hot", "cold", "clear", "cloudy", "sharp", "dull", "shiny", "matte", "fresh", "stale", "wet", "dry", "soft", "hard", "kind", "mean",
+    "brave", "timid", "cheerful", "gloomy", "intelligent", "foolish", "calm", "anxious", "polite", "rude", "generous", "selfish", "honest",
+    "deceitful", "loyal", "disloyal", "curious", "indifferent", "diligent", "lazy", "humble", "arrogant", "neat", "messy", "cautious",
+    "reckless", "patient", "impatient", "bold", "shy", "creative", "unimaginative", "enthusiastic", "apathetic", "gentle", "harsh",
+    "humorous", "serious", "loving", "hateful", "optimistic", "pessimistic", "organized", "disorganized", "proud", "modest", "resourceful",
+    "helpless", "sociable", "introverted", "thoughtful", "thoughtless", "wise", "silly", "youthful", "aged", "zany", "stern", "attentive",
+    "absent-minded", "charming", "unappealing", "efficient", "inefficient", "elegant", "clumsy", "exuberant", "restrained", "faithful",
+    "unfaithful", "helpful", "unhelpful", "imaginative", "uncreative", "joyful", "sorrowful", "knowledgeable", "ignorant", "lively",
+    "lethargic", "mature", "immature", "obedient", "rebellious", "peaceful", "turbulent", "respectful", "disrespectful", "sensible",
+    "foolish", "sophisticated", "unsophisticated", "talented", "untalented", "valiant", "cowardly", "witty", "dull", "agreeable",
+    "disagreeable", "ambitious", "lazy", "courteous", "discourteous", "determined", "hesitant", "effective", "ineffective", "fortunate",
+    "unfortunate", "gracious", "ungracious", "hardworking", "idle", "inventive", "uninventive", "judicious", "indiscreet", "boring",
+    "meticulous", "careless", "noble", "ignoble", "persistent", "wavering", "reliable", "unreliable", "sincere", "insincere", "tidy",
+    "untidy", "understanding", "indifferent", "versatile", "limited", "old", "zealous", "apathetic", "unambitious", "dynamic", "stagnant",
+    "energetic", "sluggish", "friendly", "hostile", "just", "unjust", "mindful", "thoughtless", "base", "oblivious", "passionate", "fragile",
+    "hypocritical", "yielding", "common", "vibrant", "aged", "senile", "timid", "shy", "earnest", "faithless", "treacherous", "childish",
+    "inattentive", "lax", "inefficient", "fervent", "flamboyant", "gleeful", "glorious", "gregarious", "harrowing", "hypnotic", "industrious",
+    "inept", "innocent", "insidious", "insolent", "inquisitive", "intrepid", "jaded", "jocular", "jovial", "keen", "lackadaisical", "luminous",
+    "magnanimous", "magnificent", "melancholic", "meticulous", "monotonous", "mysterious", "naive", "naughty", "nefarious", "nifty", "noisy",
+    "nostalgic", "noteworthy", "obnoxious", "opulent", "ornate", "ostentatious", "panoramic", "paradoxical", "penitent", "pensive",
+    "perceptive", "perpetual", "pertinent", "picturesque", "placid", "poignant", "polished", "pragmatic", "precarious", "prestigious",
+    "prodigious", "prolific", "prominent", "prudent", "puzzling", "quaint", "quarrelsome", "quixotic", "radiant", "reclusive", "refined",
+    "rejuvenated", "remarkable", "resolute", "resplendent", "reverent", "riveting", "robust", "romantic", "sagacious", "saintly", "sardonic",
+    "scintillating", "scrupulous", "sedate", "serene", "shrewd", "sincere", "sinister", "slovenly", "snappy", "soaring", "sophisticated",
+    "splendid", "stark", "staunch", "stupendous", "sublime", "superb", "surreal", "tenacious", "terrific", "thrifty", "tranquil", "transparent",
+    "trenchant", "triumphant", "ubiquitous", "unassuming", "unflappable", "unorthodox", "unscrupulous", "valorous", "venerated", "vibrant",
+    "vigorous", "vivid", "volatile", "whimsical", "witty", "zealous", "serendipitous", "arduous", "benevolent", "cacophonous", "dexterous",
+    "ebullient", "facetious", "gargantuan", "haphazard", "idyllic", "jubilant", "labyrinthine", "mellifluous", "nocturnal", "overzealous",
+    "penultimate", "quintessential", "recalcitrant", "solitary", "tumultuous", "ubiquitous", "vivacious", "wondrous", "zenith", "aphoristic",
+    "buoyant", "circumspect", "diffident", "effervescent", "fulminant", "garrulous", "halcyon", "ineffable", "jejune", "litigious",
+    "misanthropic", "noisome", "obdurate", "pernicious", "quintessential", "redolent", "sagacious", "taciturn", "venerable", "abominable",
+    "belligerent", "caustic", "derogatory", "effulgent", "forlorn", "grandiloquent", "heinous", "indolent", "jejune", "lugubrious", "mendacious",
+    "nebulous", "oblique", "parochial", "querulous", "repugnant", "supercilious", "tremulous", "undulating", "vapid", "waggish", "alacritous",
+    "bucolic", "cogent", "desultory", "empirical", "fatuous", "gauche", "hubristic", "ineluctable", "jocund", "lethargic", "maudlin", "nugatory",
+    "obstinate", "palliative", "quizzical", "recondite", "sententious", "terse", "unfeigned", "voracious", "wane", "zephyrous"];
     data = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']; say = ""; totalHP = 0; theID = ""; theStatus = ""; theDex = 0;
     theValues = [0,0,0,0];
     inputStr = event.content;
@@ -347,7 +350,7 @@ bot.message(start_with: "rolltheHP") do |event|;
                       theDex = data[3].to_s; #acquire the Dexterity Modifier from position [3]
                   end;
        # pull a name from the large selection of names
-         theName = manyNames[theID][rand(0..19)].upcase + " the " + adjectives[rand(0..249)].capitalize;                
+         theName = manyNames[theID][rand(0..19)].upcase + " the " + adjectives[rand(0..400)].capitalize;                
          sqlCode = "UPDATE hitPoints SET name = '" + theName + "', lowhp = " + totalHP.to_s + ", maxhp = " + totalHP.to_s + ", status = '" + 
                   theStatus + "' , dexmod = " + theDex.to_s + " WHERE id = " + theID.to_s + ";";
          say = say + "\n" + sqlCode;
