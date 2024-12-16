@@ -264,6 +264,33 @@ end;
 ###############################################################################################
 ###############################################################################################
 bot.message(start_with: "rolltheHP") do |event|;
+  manyNames =
+  [["Ada","Adolf","Alaric","Alberich","Aldric","Alfred","Alice","Amalia","Amelia","Anselm","Ansgar","Ansel","Arnold","Astrid","Audra","August","Aveline","Avila","Axel","Ayla"],
+  ["Baldric","Barnabas","Beatrix","Beda","Berengar","Bernard","Bertha","Bertram","Birger","Bjorn","Blanche","Bluma","Bodil","Bojan","Brunhild","Bruno","Burkhard","Balthazar","Belinda","Bianca"],
+  ["Carl","Carla","Caroline","Carsten","Caspar","Cecily","Cedric","Conrad","Cornelius","Corbin","Crista","Cyneburg","Cyril","Claus","Clotilde","Clemens","Clovis","Colette","Cordula","Cuthbert"],
+  ["Dagmar","Damaris","Danica","Diederik","Dieter","Dietrich","Dirk","Dolf","Dolabella","Dorothea","Dragan","Drustan","Dudo","Durin","Dagobert","Dalinda","Dankwart","Detlef","Diedrich","Digna"],
+  ["Egbert","Edda","Edgar","Edric","Eike","Elbert","Elfrida","Elma","Elvira","Emeline","Emmerich","Enric","Erwin","Ernst","Ethelbald","Ethelbert","Ethelred","Ethelind","Ewald","Ezio"],
+  ["Falk","Faulkner","Ferdinand","Filbert","Finn","Frank","Frida","Frederic","Fridolin","Frieda","Frithjof","Folke","Frode","Fulbert","Fulk","Friedmund","Fredrika","Farold","Freya","Friso"],
+  ["Gerd","Gerda","Gerhard","Gertrude","Giselle","Godfrey","Gottfried","Gudrun","Gunther","Gustaf","Gilda","Giselher","Gisela","Giselbert","Grimwald","Gernot","Godefroy","Gotthard","Griselda","Gudelia"],
+  ["Harald","Hilda","Hedwig","Helga","Heinrich","Herman","Hildegard","Holger","Hugo","Hulda","Hrolf","Hulderic","Heike","Heribert","Hermine","Hans","Hartmut","Hanno","Herleif","Hermod"],
+  ["Ida","Ivar","Ingrid","Irma","Imelda","Ilse","Ingmar","Inga","Isolde","Irmgard","Isabell","Ingolf","Irmelin","Isolda","Ingbert","Ivona","Irwin","Ingeborg","Isgard","Iseldis"],
+  ["Jakob","Jannick","Jarla","Jerald","Joana","Johann","Johanna","Jolan","Jörgen","Josef","Jost","Jürgen","Jutta","Jorn","Jost","Jakobina","Jasmin","Jael","Janina","Jurina"],
+  ["Karl","Karla","Karin","Kaspar","Katja","Kendra","Kerstin","Klaus","Knud","Konrad","Krista","Kristof","Kurt","Kyra","Kasimir","Katrin","Kuno","Kunigunde","Karsten","Kordula"],
+  ["Lambert","Lara","Lothar","Leopold","Lorelei","Lorenz","Ludwig","Luise","Lukas","Lutz","Lena","Leif","Linde","Lisbeth","Lore","Lotte","Ludolf","Luitgard","Linus","Liselotte"],
+  ["Mabel","Magda","Maiken","Malte","Manfred","Margarethe","Marika","Mathilda","Matthias","Meinhard","Melisande","Merle","Millicent","Mina","Mirabel","Moritz","Morten","Merten","Myra","Maximilian"],
+  ["Nadja","Nanna","Natan","Nelle","Nestor","Nicola","Niklas","Nils","Norbert","Norma","Norvin","Notburga","Nuala","Nudo","Nyle","Niko","Norina","Normund","Nandor","Nymue"],
+  ["Odalbert","Odilia","Olaf","Oland","Oldrich","Olin","Ortrud","Orvin","Oswin","Ottilia","Otto","Ottokar","Olger","Olinda","Oren","Orban","Ormond","Oswald","Ottilie","Ovila"],
+  ["Paul","Petra","Philipp","Poldi","Patric","Paula","Per","Peter","Petra","Phina","Pitt","Pius","Pollux","Priamus","Prudenzia","Platt","Primus","Priska","Phaedra","Percival"],
+  ["Quade","Quadel","Qualen","Quanah","Quentin","Quintin","Quillon","Quirin","Quirinus","Quadez","Quinlan","Quinn","Quadez","Quintana","Quadevius","Quador","Quendolin","Quilo","Quixote","Questra"],
+  ["Ragna","Rainer","Ranulf","Rasmus","Raymond","Reinhard","Renate","Reto","Richard","Rickard","Roderick","Roland","Rosamund","Rudolf","Runa","Rurik","Ruth","Ryker","Reimar","Reinald"],
+  ["Sabine","Sacha","Senta","Sigmund","Siegfried","Sieglinde","Sigfrid","Silke","Sigrid","Sigrun","Silvia","Steffen","Sven","Swanhild","Swen","Siebert","Sofie","Selma","Simone","Sigurd"],
+  ["Tabea","Talbert","Talia","Tamara","Thaddeus","Theobald","Theodora","Theodor","Thora","Thorsten","Till","Tilo","Traugott","Trude","Tristan","Trudi","Twila","Tyr","Tyra","Thilo"],
+  ["Udo","Ulf","Ulla","Ulrich","Ute","Urs","Ursula","Ulrike","Uwe","Unwin","Urian","Una","Ursa","Uland","Undine","Uta","Urian","Ursel","Uwe","Ulrick"],
+  ["Valdemar","Valentina","Valerie","Valfrid","Vanda","Vania","Vanessa","Vera","Verena","Verner","Viola","Volker","Volkmar","Volrad","Vorn","Violetta","Veronika","Vittorio","Vulf","Vulfram"],
+  ["Waldemar","Waldo","Waltraud","Wanda","Wendel","Wernher","Werner","Wibke","Wido","Wilfried","Wilhelm","Wilma","Winfried","Winola","Wolfgang","Wolfram","Wulfgar","Wulfila","Wunibald","Wybert"],
+  ["Xander","Xanthe","Xanthus","Xaver","Xenia","Xenon","Xerxes","Xever","Ximen","Ximena","Xiomar","Xyla","Xylina","Xylia","Xyris","Xantina","Xara","Xantha","Xion","Xylaine"],
+  ["Yara","Yngve","Yannick","Yvette","Yngvild","Yara","Ysolda","Ysabel","Yolantha","Ysmay","Yolanda","Yorrick","Yudelle","Yvonne","Yuliana","Ysabel","Ysmara","Ywain","Yvaine","Ylva"],
+  ["Zabel","Zalman","Zaneta","Zanthe","Zeno","Zesiro","Zethar","Zephyra","Ziegler","Zigor","Zilke","Ziva","Zobad","Zora","Zosime","Zsigmond","Zven","Zwart","Zyta","Zyrus"]];  
     data = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']; say = ""; totalHP = 0; theID = ""; theStatus = ""; theDex = 0;
     theValues = [0,0,0,0];
     inputStr = event.content;
@@ -285,8 +312,9 @@ bot.message(start_with: "rolltheHP") do |event|;
                       theID = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".index(letter); # points to the appropriate ID for the letter
                       theStatus = data[1].to_s; #acquire the status from position [1]
                       theDex = data[3].to_s; #acquire the Dexterity Modifier from position [3]
+                      theName = manyNames[theID][(rand(0..19)];
                   end;
-           sqlCode = "UPDATE hitPoints SET lowhp = " + totalHP.to_s + ", maxhp = " + totalHP.to_s + ", status = '" + 
+           sqlCode = "UPDATE hitPoints SET name = " + theName + " lowhp = " + totalHP.to_s + ", maxhp = " + totalHP.to_s + ", status = '" + 
                      theStatus + "' , dexmod = " + theDex.to_s + " WHERE id = " + theID.to_s + ";";
            say = say + "\n" + sqlCode;
          # Execute SQL update 
