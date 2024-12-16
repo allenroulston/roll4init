@@ -186,12 +186,18 @@ end;
 bot.message(start_with: "makethemMARDS") do |event|;
    conn = PG.connect(ENV['DATABASE_URL'])
    # Build SQL statement (below)
-   sqlCode = "UPDATE hitPoints SET name = 'ALLEN', dexmod = 5, status = 'Alive' WHERE id = 26;";
+   sqlCode = "UPDATE hitPoints SET name = 'DALHA', dexmod = 3, status = 'Alive' WHERE id = 26;";
    # Execute SQL update (below)
    conn.exec(sqlCode);
-   sqlCode = "UPDATE hitPoints SET name = 'BOBO', dexmod = 4, status = 'Alive' WHERE id = 27;";
+   sqlCode = "UPDATE hitPoints SET name = 'MARWA', dexmod = 2, status = 'Alive' WHERE id = 27;";
    conn.exec(sqlCode);   
-   sqlCode = "UPDATE hitPoints SET name = 'JANE', dexmod = 3, status = 'Alive' WHERE id = 35;";
+   sqlCode = "UPDATE hitPoints SET name = 'REMI', dexmod = 1, status = 'Alive' WHERE id = 28;";
+   conn.exec(sqlCode);
+   sqlCode = "UPDATE hitPoints SET name = 'LILYTH', dexmod = 3, status = 'Alive' WHERE id = 29;";
+   conn.exec(sqlCode);
+   sqlCode = "UPDATE hitPoints SET name = 'BOZORK', dexmod = 2, status = 'Alive' WHERE id = 30;";
+   conn.exec(sqlCode);
+   sqlCode = "UPDATE hitPoints SET name = 'BOZ-JUNIOR', dexmod = 3, status = 'Alive' WHERE id = 31;";
    conn.exec(sqlCode);
    conn.close
    event.respond "MARDS installed";      
@@ -201,12 +207,20 @@ end;
 bot.message(start_with: "makethemGHEDD") do |event|;
    conn = PG.connect(ENV['DATABASE_URL'])
    # Build SQL statement (below)
-   sqlCode = "UPDATE hitPoints SET name = 'GHEDD26', dexmod = 5, status = 'Alive' WHERE id = 26;";
+   sqlCode = "UPDATE hitPoints SET name = 'BEAU', dexmod = 2, status = 'Alive' WHERE id = 26;";
    # Execute SQL update (below)
    conn.exec(sqlCode);
-   sqlCode = "UPDATE hitPoints SET name = 'GHEDD27', dexmod = 4, status = 'Alive' WHERE id = 27;";
+   sqlCode = "UPDATE hitPoints SET name = 'ASHURAKH', dexmod = 0, status = 'Alive' WHERE id = 27;";
    conn.exec(sqlCode);   
-   sqlCode = "UPDATE hitPoints SET name = 'GHEDD35', dexmod = 3, status = 'Alive' WHERE id = 35;";
+   sqlCode = "UPDATE hitPoints SET name = 'EGAS', dexmod = 3, status = 'Alive' WHERE id = 28;";
+   conn.exec(sqlCode);
+   sqlCode = "UPDATE hitPoints SET name = 'ORSIK', dexmod = 2, status = 'Alive' WHERE id = 28;";
+   conn.exec(sqlCode);
+   sqlCode = "UPDATE hitPoints SET name = 'GHEDD29', dexmod = 3, status = 'Dead' WHERE id = 29;";
+   conn.exec(sqlCode);
+   sqlCode = "UPDATE hitPoints SET name = 'GHEDD30', dexmod = 2, status = 'Dead' WHERE id = 30;";
+   conn.exec(sqlCode);
+   sqlCode = "UPDATE hitPoints SET name = 'GHEDD31', dexmod = 3, status = 'Dead' WHERE id = 31;";
    conn.exec(sqlCode);
    conn.close
    event.respond "GHEDD installed";      
