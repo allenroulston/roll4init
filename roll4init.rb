@@ -399,13 +399,13 @@ bot.message(start_with: "%d") do |event|;
   # establish a connection with the database
   conn = PG.connect(ENV['DATABASE_URL'])
   goDead = event.content.slice(2,49);
-    say = "Entities marked DEAD :" + goDead;
+  say = "Entity marked DEAD :" + goDead;
   (0..25).each do |check|
       if goDead.index(alpha[check]) != nil then;
         theID = check;
         # Build SQL statement (below)
           sqlCode = "UPDATE hitPoints SET status = '" + "Dead" + "' WHERE id = " + theID.to_s + ";\n";
-          say = say + sqlCode;
+        # say = say + sqlCode;
         # Execute SQL update 
           conn.exec(sqlCode); 
       end;
@@ -417,17 +417,17 @@ end;
 ##################################################################################################################
 bot.message(start_with: "%a") do |event|;
   event.message.delete;
-  say = "Making peeps ALIVE \n";
   alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   # establish a connection with the database
   conn = PG.connect(ENV['DATABASE_URL'])
   goLive = event.content.slice(2,49);
+  say = "Entity marked ALIVE :" + goLive;
   (0..25).each do |check|
       if goLive.index(alpha[check]) != nil then;
         theID = check;
         # Build SQL statement (below)
           sqlCode = "UPDATE hitPoints SET status = '" + "Alive" + "' WHERE id = " + theID.to_s + ";\n";
-          say = say + sqlCode;
+        # say = say + sqlCode;
         # Execute SQL update 
           conn.exec(sqlCode); 
       end;
