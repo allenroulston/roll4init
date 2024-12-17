@@ -401,7 +401,7 @@ bot.message(start_with: "%d") do |event|;
   goDead = event.content.slice(2,49);
     say = "Entities marked DEAD :" + goDead;
   (0..25).each do |check|
-      if goLive.index(alpha[check]) != nil then;
+      if goDead.index(alpha[check]) != nil then;
         theID = check;
         # Build SQL statement (below)
           sqlCode = "UPDATE hitPoints SET status = '" + "Dead" + "' WHERE id = " + theID.to_s + ";\n";
