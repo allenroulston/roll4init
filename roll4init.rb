@@ -70,7 +70,7 @@ bot.message(start_with: "tdmg") do |event|;
    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; theID = 0; theName = ""; theStatus = ""; theLowHp = -9; theMaxHp = -19; health = "unknown";
    letter = event.content.slice(4,1); #4 > 3 for dmg   #NEXT LINE is the character found in letter valid?
    lValidity = alphabet.index(letter);   remainder = event.content.slice(5,99);   rValidity = remainder.index(","); # 5 > 4 for dmg
-   comment = remainder.slice(rValidity,99);
+   comment = remainder.slice(rValidity+1,99).upcase; if comment.length < 3 then; comment = "A COMMENT COULD GO HERE"; end;
    if (lValidity != nil) && (rValidity != nil) then # valid letter and a comma is found
       damage = event.content.slice(5,(rValidity)).to_i;
       # Access the database, pull date and push results      
@@ -82,12 +82,12 @@ bot.message(start_with: "tdmg") do |event|;
          theMaxHp = row.fetch("maxhp").to_i;   theLowHp = row.fetch("lowhp").to_i;
          theStatus = row.fetch("status").to_s;
       end;
-      say = theName + " sustained " + damage.to_s  + " hurts.";
+      say = theName + " sustained " + damage.to_s  + " hurts ";
       theLowHp = theLowHp - damage;   percent = ( ( (theLowHp*1.00)/(theMaxHp*1.00) ) *100);
       if percent < 0 then health = "Down"; else health = "Bloody"; end;
       if percent > 50 then health = "Okay"; end;
       if percent < 0 then theStatus = "Down"; end;
-      say = say + " and looks " + health;  #+ " and thus is " + theStatus;
+      say = say + "and looks " + health;  #+ " and thus is " + theStatus;
       say = say + "\n" + comment;
       # Build SQL statement (below)
         sqlCode = "UPDATE hitPoints SET lowhp = " + theLowHp.to_s + " WHERE id = " + theID.to_s + ";";
