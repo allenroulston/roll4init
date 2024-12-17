@@ -82,13 +82,14 @@ bot.message(start_with: "tdmg") do |event|;
          theMaxHp = row.fetch("maxhp").to_i;   theLowHp = row.fetch("lowhp").to_i;
          theStatus = row.fetch("status").to_s;
       end;
-      say = theName + " sustained " + damage.to_s  + " hurts ";
+      say = "Entity " + theName + " sustained " + damage.to_s  + " hurts ";
       theLowHp = theLowHp - damage;   percent = ( ( (theLowHp*1.00)/(theMaxHp*1.00) ) *100);
       if percent < 0 then health = "Down"; else health = "Bloody"; end;
       if percent > 50 then health = "Okay"; end;
       if percent < 0 then theStatus = "Down"; end;
       say = say + "and looks " + health;  #+ " and thus is " + theStatus;
       say = say + "\n" + comment;
+      one = "```"; two =  "```"; say = one + say + two;
       # Build SQL statement (below)
         sqlCode = "UPDATE hitPoints SET lowhp = " + theLowHp.to_s + " WHERE id = " + theID.to_s + ";";
       # say = say + "\n" + sqlCode;
